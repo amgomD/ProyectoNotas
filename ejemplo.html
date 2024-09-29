@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos interactivos - Estilo Notion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .project-preview, .task-preview {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+
+        .nota-decorada {
+            font-style: italic;
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 5px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Editor Interactivo de Proyectos</h1>
+
+    <div class="input-group">
+        <h2>Detalles del Proyecto</h2>
+        <input type="text" id="nombreProyecto" placeholder="Nombre del Proyecto">
+        <textarea id="descripcionProyecto" rows="3" placeholder="Descripción del Proyecto"></textarea>
+    </div>
+
+    <div class="input-group">
+        <h2>Tarea</h2>
+        <input type="text" id="nombreTarea" placeholder="Nombre de la Tarea">
+        <textarea id="descripcionTarea" rows="2" placeholder="Descripción de la Tarea"></textarea>
+        <input type="date" id="fechaLimite">
+
+        <h2>Nota</h2>
+        <textarea id="contenidoNota" rows="3" placeholder="Contenido de la Nota"></textarea>
+        <select id="decoracionNota">
+            <option value="none">Sin Decoración</option>
+            <option value="bold">Negrita</option>
+            <option value="italic">Cursiva</option>
+            <option value="underline">Subrayado</option>
+        </select>
+    </div>
+
+    <!-- Preview dinámico del proyecto, tarea y notas -->
+    <div class="project-preview">
+        <h2 id="previewNombreProyecto"></h2>
+        <p id="previewDescripcionProyecto"></p>
+
+        <div class="task-preview">
+            <h3 id="previewNombreTarea"></h3>
+            <p id="previewDescripcionTarea"></p>
+            <p id="previewFechaLimite"></p>
+            <div id="previewNotaDecorada" class="nota-decorada"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Clase Nota
+    class Nota {
+        constructor(contenido, decoracion) {
+            this.contenido = contenido;
+            this.decoracion = decoracion;
+        }
+
+        obtenerContenidoDecorado() {
+            switch (this.decoracion) {
+                case 'bold':
+                    return `<strong>${this.contenido}</strong>`;
+                case 'italic':
+                    return `<em>${this.contenido}</em>`;
+                case 'underline':
+                    return `<u>${this.contenido}</u>`;
+                default:
+                    return this.contenido;
+            }
+        }
+    }
+
+    // Clase Tarea
+    class Tarea {
+        constructor(titulo, descripcion, fechaLimite, nota) {
+            this.titulo = titulo;
+            this.descripcion = descripcion;
+            this.fechaLimite = fechaLimite;
+            this.nota = nota;
+        }
+
+        actualizarTarea(titulo, descripcion, fechaLimite, nota) {
+            this.titulo = titulo;
+            this.descripcion = descripcion;
+            this.fechaLimite = fechaLimite;
+            this.nota = nota;
+        }
+
+        mostrarTarea() {
+            return {
+                titulo: this.titulo,
+                descripcion: this.descripcion,
+                fechaLimite: this.fechaLimite,
+                nota: this.nota.obtenerContenidoDecorado()
+            };
+        }
+    }
+
+    // Clase Proyecto
+    class Proyecto {
+        constructor(nombre, descripcion) {
+            this.nombre = nombre;
+            this.descripcion = descripcion;
+            this.tarea = null;
+        }
+
+        actualizarProyecto(nombre, descripcion) {
+            this.nombre = nombre;
+            this.descripcion = descripcion;
+        }
+
+        agregarTarea(tarea) {
+            this.tarea = tarea;
+        }
+
+        mostrarProyecto() {
+            return {
+                nombre: this.nombre,
+                descripcion: this.descripcion,
+                tarea: this.tarea ? this.tarea.mostrarTarea() : null
+            };
+        }
+    }
+
+    // Crear una instancia del proyecto
+    let proyecto = cargarProyectoDesdeLocalStorage() || new Proyecto('', '');
+    let tarea;
+
+    // Función para actualizar la vista en tiempo real y guardar en localStorage
+    function actualizarVista() {
+        // Actualizar Proyecto
+        const nombreProyecto = document.getElementById('nombreProyecto').value;
+        const descripcionProyecto = document.getElementById('descripcionProyecto').value;
+        proyecto.actualizarProyecto(nombreProyecto, descripcionProyecto);
+
+        // Crear una nota decorada
+        const contenidoNota = document.getElementById('contenidoNota').value;
+        const decoracion = document.getElementById('decoracionNota').value;
+        const nota = new Nota(contenidoNota, decoracion);
+
+        // Actualizar o crear una nueva tarea
+        const nombreTarea = document.getElementById('nombreTarea').value;
+        const descripcionTarea = document.getElementById('descripcionTarea').value;
+        const fechaLimite = document.getElementById('fechaLimite').value;
+
+        if (tarea) {
+            tarea.actualizarTarea(nombreTarea, descripcionTarea, fechaLimite, nota);
+        } else {
+            tarea = new Tarea(nombreTarea, descripcionTarea, fechaLimite, nota);
+            proyecto.agregarTarea(tarea);
+        }
+
+        // Guardar en localStorage
+        guardarProyectoEnLocalStorage(proyecto);
+
+        // Mostrar en la vista
+        const datosProyecto = proyecto.mostrarProyecto();
+
+        document.getElementById('previewNombreProyecto').textContent = datosProyecto.nombre;
+        document.getElementById('previewDescripcionProyecto').textContent = datosProyecto.descripcion;
+
+        if (datosProyecto.tarea) {
+            document.getElementById('previewNombreTarea').textContent = datosProyecto.tarea.titulo;
+            document.getElementById('previewDescripcionTarea').textContent = datosProyecto.tarea.descripcion;
+            document.getElementById('previewFechaLimite').textContent = `Fecha Límite: ${datosProyecto.tarea.fechaLimite}`;
+            document.getElementById('previewNotaDecorada').innerHTML = datosProyecto.tarea.nota;
+        }
+    }
+
+    // Función para guardar el proyecto en localStorage
+    function guardarProyectoEnLocalStorage(proyecto) {
+        localStorage.setItem('proyecto', JSON.stringify(proyecto));
+    }
+
+    // Función para cargar el proyecto desde localStorage
+    function cargarProyectoDesdeLocalStorage() {
+        const proyectoGuardado = localStorage.getItem('proyecto');
+        if (proyectoGuardado) {
+            const datos = JSON.parse(proyectoGuardado);
+            // Reconstruir el proyecto con clases y métodos
+            const nota = new Nota(datos.tarea.nota.contenido, datos.tarea.nota.decoracion);
+            const tarea = new Tarea(datos.tarea.titulo, datos.tarea.descripcion, datos.tarea.fechaLimite, nota);
+            const proyectoCargado = new Proyecto(datos.nombre, datos.descripcion);
+            proyectoCargado.agregarTarea(tarea);
+            return proyectoCargado;
+        }
+        return null;
+    }
+
+    // Eventos para detectar cambios en tiempo real
+    document.getElementById('nombreProyecto').addEventListener('input', actualizarVista);
+    document.getElementById('descripcionProyecto').addEventListener('input', actualizarVista);
+    document.getElementById('nombreTarea').addEventListener('input', actualizarVista);
+    document.getElementById('descripcionTarea').addEventListener('input', actualizarVista);
+    document.getElementById('fechaLimite').addEventListener('input', actualizarVista);
+    document.getElementById('contenidoNota').addEventListener('input', actualizarVista);
+    document.getElementById('decoracionNota').addEventListener('change', actualizarVista);
+
+    // Cargar la vista inicial desde localStorage
+    actualizarVista();
+</script>
+
+</body>
+</html>
