@@ -6,15 +6,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const portada = document.getElementById("portada");
     const icono =document.getElementById('iconotitulo') ;
    
-    titulo.innerHTML = icono.innerHTML+encabezado.innerHTML;
+    //titulo.innerHTML = icono.innerHTML+encabezado.innerHTML;
+ 
     
-    // Cambia el fondo del div a la imagen
-    portada.style.backgroundImage = 'url(../img/fondo1.png)';
-    portada.style.backgroundSize = 'cover'; // Ajusta la imagen al tamaño del div
-    portada.style.backgroundPosition = 'center'; // Centra la imagen en el div
-    
-    
-    
+
+
+
     function ajustarPadding() {
         const alturaBarra = barraSuperior.offsetHeight;
         contenidoPrincipal.style.paddingTop = alturaBarra + "px";
@@ -73,115 +70,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 */
 
-const iframe = document.getElementById('editortext');
 const popupMenu = document.getElementById('editor');
 
-
-// Esperar a que el contenido del iframe se cargue completamente
-iframe.addEventListener('load', function() {
-    const iframeDocument = iframe.contentDocument;
-    const contentDiv = iframeDocument.getElementById('bodyy');
-    let escribe = iframeDocument.getElementById('escribe');
-    const headingButton = document.getElementById('heading');
-    const menu = document.getElementById('menuheading');
-
-    headingButton.addEventListener('mouseover', function() {
-        menu.style.display = 'block';
-        const rect = headingButton.getBoundingClientRect();
-
-    });
-
-    headingButton.addEventListener('mouseout', function(event) {
-        // Detener el evento de ocultar el menú si el cursor está sobre el menú
-        if (!menu.contains(event.relatedTarget)) {
-            menu.style.display = 'none';
-        }
-    });
-
-    menu.addEventListener('mouseover', function() {
-        menu.style.display = 'block';
-    });
-
-    menu.addEventListener('mouseout', function(event) {
-        // Ocultar el menú cuando el mouse sale del menú
-        if (!headingButton.contains(event.relatedTarget)) {
-            menu.style.display = 'none';
-        }
-    });
-
-
-    // Agregar el event listener para mousemove
-    contentDiv.addEventListener('contextmenu', function(event) {
-             event.preventDefault();  // Previene el menú contextual por defecto del navegador
-        
-               popupMenu.style.display = 'block';
-                          // Posición del ratón dentro del iframe
-                          const mouseX = event.clientX;
-                          const mouseY = event.clientY;
-      
-                          // Posición del iframe en la ventana del navegador
-                          const iframeRect = iframe.getBoundingClientRect();
-      
-                          // Calcular la posición total del ratón
-                          const totalMouseX = mouseX + iframeRect.left;
-                          const totalMouseY = mouseY + iframeRect.top+10;
-            popupMenu.style.left = `${totalMouseX}px`;
-            popupMenu.style.top = `${totalMouseY}px`;
-    });
-
-    contentDiv.addEventListener('click', function(event) {
-        const selection = iframeDocument.getSelection().toString().trim();
-        let timer;
-  
-    
- 
-        if(selection){
-            if (timer) {
-                clearTimeout(timer);
-            }
-
-            timer = setTimeout(function() {
-            popupMenu.style.display = 'block';
-            // Posición del ratón dentro del iframe
-            const mouseX = event.clientX;
-            const mouseY = event.clientY;
-
-            // Posición del iframe en la ventana del navegador
-            const iframeRect = iframe.getBoundingClientRect();
-
-            // Calcular la posición total del ratón
-            const totalMouseX = mouseX + iframeRect.left;
-            const totalMouseY = mouseY + iframeRect.top+10;
-popupMenu.style.left = `${totalMouseX}px`;
-popupMenu.style.top = `${totalMouseY}px`;
-}, 300); 
-        }else{
-            popupMenu.style.display = 'none';
-            escribe = iframeDocument.getElementById('escribe');
-            escribe.remove();
-        }
- 
-    });
-
-    contentDiv.addEventListener('input', function() {
-        popupMenu.style.display = 'none';
-  
-        if (contentDiv.textContent.trim() === '') {
-            contentDiv.innerHTML = '<span id="escribe" style="color: gray;">Escribe aquí...</span>';
-        }else{
-            escribe = iframeDocument.getElementById('escribe');
-            if(escribe){
-             escribe.remove();
-            }
-        }
- 
-    });
-
-
-
-
-
-});
 
 
 

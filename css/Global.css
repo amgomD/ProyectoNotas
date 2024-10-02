@@ -178,7 +178,9 @@ font-size: 20px;
 }
 
 .portada{
-    background-color: aqua;
+    background-image: url(../img/fondo1.png);
+    background-size: cover;
+    background-position: center;
     width: 100%;
     height:20%;
 }
@@ -233,6 +235,18 @@ font-size: 20px;
     margin: 0px;
 }
 
+.descripcion{
+    width: 50% !important;
+    height:60PX;
+    word-wrap: break-word;
+ 
+}
+#descripcion{
+    width: 100%;
+    height:100%;
+    overflow: visible; /* Ocultar barra de desplazamiento */
+    resize: none;
+}
 .input2{
     border: none;
     outline: none;

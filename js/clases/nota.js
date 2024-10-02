@@ -1,40 +1,92 @@
-class Nota {
-    constructor(contenido) {
-      this.contenido = contenido;
+
+class NotaPrototype{
+    constructor(proto){
+this.proto = proto;
+return this.clone();
     }
-  
-    obtenerContenido() {
-      return this.contenido;
+
+    clone(){
+     let nota = new Nota();
+     nota.id = this.proto.id;
+     nota.titulo = this.proto.titulo;
+     nota.comentario = this.proto.comentario;
+     nota.portada = this.proto.portada;
+     nota.fecha = this.proto.fecha;
+     nota.contenido = this.proto.contenido;
     }
-  }
+
+}
+
+class Nota{
+    constructor(id,titulo,comentario,portada,fecha,contenido){
+        this.id = id;
+        this.titulo = titulo;
+        this.comentario = comentario;
+        this.portada = portada;
+        this.fecha = fecha;
+        this.contenido = contenido;
+    }
+
+    getNota(){
+        return{
+            id: this.id,
+            titulo:this.titulo,
+            comentario:this.comentario,
+            portada:this.portada,
+            fecha:this.fecha,
+            contenido:this.contenido
+        };
+    }
 
 
-  
-  class NotaDecorator {
-    constructor(nota) {
-      this.nota = nota;
+
+    setTitulo(newTitulo){
+        this.titulo = newTitulo;
     }
-  
-    obtenerContenido() {
-      return this.nota.obtenerContenido();
+    setComentario(newcomentario){
+        this.comentario = newcomentario;
     }
-  }
-  
-  class Negrita extends NotaDecorator {
-    obtenerContenido() {
-      return `<strong>${super.obtenerContenido()}</strong>`;
+    setPortada(portada){
+        this.portada = portada;
     }
-  }
-  
-  class Cursiva extends NotaDecorator {
-    obtenerContenido() {
-      return `<em>${super.obtenerContenido()}</em>`;
+    setFecha(fecha){
+        this.fecha = fecha;
     }
-  }
-  
-  class Subrayado extends NotaDecorator {
-    obtenerContenido() {
-      return `<u>${super.obtenerContenido()}</u>`;
+    setContenido(contenido){
+        this.contenido = contenido;
     }
-  }
-  
+}
+
+function crearnota(){
+    let id = Math.random().toString(36).substr(2, 9);
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los meses van de 0 (enero) a 11 (diciembre)
+const dia = fechaActual.getDate().toString().padStart(2, '0');
+
+    let nuevaNota = new Nota(id,"Agrega un titulo",
+        "","../img/fondo1.png",`${dia}/${mes}/${año}`,"");
+      
+        guardarNotaLocal(nuevaNota); 
+        window.location.href = `Nota.html?id=${encodeURIComponent(nuevaNota.id)}`;
+
+}
+
+
+/*let notaprototipo = new Nota("este es un prototipo","hola","fdmfmf","3434","skdjksjd");
+let notas = new NotaPrototype(notaprototipo);
+console.log(notas);*/
+
+function guardarNotaLocal(nota) {
+    let id = Math.random().toString(36).substr(2, 9);
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los meses van de 0 (enero) a 11 (diciembre)
+const dia = fechaActual.getDate().toString().padStart(2, '0');
+
+    nota.setFecha(`${dia}/${mes}/${año}`)
+    let notcreada = nota.getNota();
+    localStorage.setItem(notcreada.id, JSON.stringify(nota));
+}
+/*guardarProyectoEnLocalStorage(proyecto);*/
+
