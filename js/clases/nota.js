@@ -7,12 +7,14 @@ return this.clone();
 
     clone(){
      let nota = new Nota();
-     nota.id = this.proto.id;
+     let nuid = Math.random().toString(36).substr(2, 9);
+     nota.id = nuid;
      nota.titulo = this.proto.titulo;
      nota.comentario = this.proto.comentario;
      nota.portada = this.proto.portada;
      nota.fecha = this.proto.fecha;
      nota.contenido = this.proto.contenido;
+     return nota
     }
 
 }
@@ -64,13 +66,14 @@ function crearnota(){
 const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los meses van de 0 (enero) a 11 (diciembre)
 const dia = fechaActual.getDate().toString().padStart(2, '0');
 
-    let nuevaNota = new Nota(id,"Agrega un titulo",
+    let nuevaNota = new Nota(id,"",
         "","../img/fondo1.png",`${dia}/${mes}/${año}`,"");
       
         guardarNotaLocal(nuevaNota); 
         window.location.href = `Nota.html?id=${encodeURIComponent(nuevaNota.id)}`;
 
 }
+
 
 
 /*let notaprototipo = new Nota("este es un prototipo","hola","fdmfmf","3434","skdjksjd");

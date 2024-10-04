@@ -21,15 +21,20 @@
 
 .carruselcard{
     display: flex;
+    overflow: scroll;
+    width: 100%;
     gap: 40px;
     padding: 10px;
+    padding-bottom: 40px;
 
 }
 .card{
     background-color: #202020 !important ;
-    width: 200px;
+    max-width: 250px;
+    min-width: 250px;
     border-radius: 20px;
-    overflow: hidden;
+    word-wrap: break-word;
+   
 }
 .card:hover{
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.219);
@@ -49,19 +54,25 @@ color: #818181;
 
 .portada-card{
 width: 100%;
-background-image: url(../img/fondo1.png);
+
 background-size: cover;
 background-color: rgba(0, 255, 255, 0);
 height: 50px;
+border-top-right-radius: 20px;
+border-top-left-radius: 20px;
 }
 
 .card-Titulo{
     padding: 20px;
+    width: 250px;
     font-size: 22px;
-    word-wrap: break-word;
     font-weight: 600;
 }
-
+.card-Titulo p {
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+    overflow: hidden; /* Oculta el texto que se desborda del contenedor */
+    text-overflow: ellipsis;
+}
 .card-pie{
     align-items: end;
     display: flex;

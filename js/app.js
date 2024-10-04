@@ -8,10 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
    
     //titulo.innerHTML = icono.innerHTML+encabezado.innerHTML;
  
-    
-
-
-
     function ajustarPadding() {
         const alturaBarra = barraSuperior.offsetHeight;
         contenidoPrincipal.style.paddingTop = alturaBarra + "px";
@@ -21,8 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Si la barra puede cambiar de tamaño después de la carga (por ejemplo, en respuesta a eventos de la página), puedes ajustar nuevamente
     window.addEventListener("resize", ajustarPadding);
-
-
     const menuIcon = document.getElementById("Menu");
     const menuLateral = document.getElementById("menu-lateral");
 
@@ -61,20 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-/*document.getElementById('encabezado').addEventListener('input', function() {
-    const icono =document.getElementById('iconotitulo') ;
-    const directiorio = document.getElementById('directorio');
-    document.title = icono.innerHTML+this.value;
-    directiorio.innerHTML = icono.innerHTML+this.value;
-     // Cambia el título de la página al valor del input
-});
-*/
-
 const popupMenu = document.getElementById('editor');
-
-
-
-
 const textarea = document.getElementById('editortext');
 
 
@@ -92,8 +73,6 @@ document.addEventListener('click', function(event) {
 });
 
 
-
-
 textarea.srcdoc = `
     <html>
     <head>
@@ -106,34 +85,26 @@ textarea.srcdoc = `
     </html>
 `;
 
-/*
-// Crear una nota
-let notaBasica = new Nota("Esta es una nota importante");
+document.getElementById('opciones').addEventListener('click', function(event) {
+    const menu = document.getElementById('menuop');
+    console.log('jols')
+    // Obtener la posición del div 'opciones'
+    const rect = this.getBoundingClientRect();
+    
 
-// Decorar la nota
-let notaNegrita = new Negrita(notaBasica);
-let notaSubrayada = new Subrayado(notaNegrita);
+    // Mostrar u ocultar el menú
+    menu.classList.add('mostrar');
+    menu.classList.remove('ocultar');
 
-console.log(notaSubrayada.obtenerContenido()); // <u><strong>Esta es una nota importante</strong></u>
+});
 
-// Crear una tarea y agregar la nota
-let tarea1 = new Tarea.Builder('Estudiar patrones de diseño')
-  .setDescripcion('Revisar el patrón Builder y Prototype en JavaScript')
-  .setFechaLimite('2024-10-01')
-  .agregarNota(notaSubrayada) // Agregar la nota decorada a la tarea
-  .build();
+  document.addEventListener('click', (event) => {
+    const menu = document.getElementById('menuop');
+    const opciones = document.getElementById('opciones');
+    if (!menu.contains(event.target) && !opciones.contains(event.target)) {
+        menu.classList.add('ocultar');
+    }
+  });
 
-// Clonar la tarea
-let tareaClonada = tarea1.clonar();
 
-// Crear un proyecto y agregar la tarea
-let proyecto = new Proyecto.Builder('Proyecto de Estudio')
-  .setDescripcion('Proyecto para aprender patrones de diseño')
-  .agregarTareas([tarea1])
-  .build();
 
-// Mostrar la información del proyecto y tarea
-proyecto.mostrarProyecto();
-tarea1.mostrarTarea();
-
-*/

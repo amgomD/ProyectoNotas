@@ -23,6 +23,17 @@
      
         </div>
         
+    <div id="menuop" class="menuop-hidden">
+      <div id="CopiarNota" class="opitems"><i class="fa-solid fa-copy"></i>Copiar nota</div>
+      <div class="opitems"><i class="fa-solid fa-arrows-up-down-left-right"></i>Mover a</div>
+      
+      <div  id="papelera" class="opitems"><i class="fa-solid fa-trash"></i>Mover a la papelera</div>
+    <hr>
+      <div class="renglon">
+        <input id="invitar" class="inputnew" type="email" placeholder="Correo electronico separado por comas">
+     <button class="btninvitar">Invitar</button>
+      </div>
+    </div>
     <div class="barrasuperior" id="barraSuperior">
       <div class="ladoIzq">
         <div id="Menu" >  
@@ -38,22 +49,35 @@
         <p id="compartir">Compartir</p>
         <i id="comentarios" class="fa-regular fa-comment-dots"></i>
         <i id="historial" class="fa-solid fa-clock"></i>
-        <i id="opciones" class="fa-solid fa-ellipsis-vertical"></i>  
-    </div>
-    
+       <p  id="opciones" >
+        <i class="fa-solid fa-ellipsis-vertical"></i>  
+ 
+       </p>   
+      
+      </div>
+
+
+
     </div>
     
   <div class="cuerpo" id="contenidoPrincipal">    
     <div id="portada" class="portada">
     </div>
     <div class="contenido-cuerpo">
+      <span id="copiar">  <i class="fa-solid fa-copy"></i>
+      </span>
+      <span id="EditarPortada">  <i class="fa-solid fa-image"></i> Editar Portada
+      </span>
       <div class="Encabezado">
+        
         <div id="iconotitulo" class="icono">🕛</div>
+     
         <input class="Encabezado-text" 
         type="text" 
        
         id="encabezado"
         placeholder="Sin titulo">
+    
       </div>
       <div class="descripcion">
         <textarea placeholder="Agrega una descripción ..." class="input" type="text" id="descripcion"></textarea>
@@ -62,7 +86,7 @@
 
       </iframe>
     </div>
-   
+    <div id="galeria"></div>
 <div id="editor" class="editor">
   <button id="heading"><i class="fa-solid fa-text-height"></i></i></button>
 
@@ -141,7 +165,7 @@
 
  </div>
  <script src="js/sidemenu.js"></script>
- <script src="js/clases/Nota.js"></script>
+ <script src="js/clases/nota.js"></script>
  <script src="js/EditorNota.js"></script>
  <script src="js/app.js"></script>
  <script src="js/editor.js"></script>

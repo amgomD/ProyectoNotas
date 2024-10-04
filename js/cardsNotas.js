@@ -14,8 +14,8 @@ function cargarnotasinicio(){
         const notaObj = JSON.parse(valor);
         
         menucont+= `  <div id="${notaObj.id}" class="card">
-                    <div class="portada-card">
-
+                    <div style="background-image: url(${notaObj.portada});" class="portada-card">
+            
                     </div>
                     <div class="card-Titulo">
                      <p> ${notaObj.titulo}</p> 
@@ -53,4 +53,41 @@ cards.forEach(item => {
  
 
     });
+
+    item.addEventListener('contextmenu', function(event) {
+      const id = this.id;
+      event.preventDefault();  // Previene el menú contextual por defecto del navegador
+      console.log('Hola'+id);
+      const menu = document.getElementById('menuop2');
+      menu.style.display = 'block';
+      menu.style.left = `${event.pageX}px`;
+      menu.style.top = `${event.pageY}px`;
+      const papelera = document.getElementById('papelera');
+      papelera.addEventListener('click', (event) => {
+        const id = this.id;
+        console.log(id);
+        localStorage.removeItem(id);
+     window.location.href = `inicio.html`;
+      });
+
   });
+ 
+
+
+
+  document.addEventListener('click', (event) => {
+    const menu = document.getElementById('menuop2');
+    if (!menu.contains(event.target) && !item.contains(event.target)) {
+        menu.style.display = 'none';
+    }
+  });
+
+
+
+  });
+
+
+
+
+
+ 

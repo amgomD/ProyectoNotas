@@ -8,8 +8,9 @@ let titulo2 = document.getElementById("titulo");
 let fecha = document.getElementById("fecha");
 const icono =document.getElementById('iconotitulo') ;
 let iframe = document.getElementById('editortext');
-    
-
+let copiarNota = document.getElementById('CopiarNota');
+let copiar = document.getElementById('copiar');
+let editarPortada = document.getElementById('EditarPortada');
 const notaGuardada = localStorage.getItem(valorParametro);
 
 // 2. Comprobar si el dato existe
@@ -46,8 +47,7 @@ encabezado.addEventListener('input', function(event) {
     descripcion.style.height = descripcion.scrollHeight + 'px';
     guardarNotaLocal(nota); 
   });
-
-
+ 
 // Esperar a que el contenido del iframe se cargue completamente
 iframe.addEventListener('load', function() {
     const iframeDocument = iframe.contentDocument;
@@ -158,9 +158,81 @@ popupMenu.style.top = `${totalMouseY}px`;
 
 });
 
+copiarNota.addEventListener('click',function(event) {
+    let notas = new NotaPrototype(nota); 
+    guardarNotaLocal(notas); 
+    window.location.href = `Nota.html?id=${encodeURIComponent(notas.id)}`;
+  });
+
+  copiar.addEventListener('click',function(event) {
+    let notas = new NotaPrototype(nota); 
+    guardarNotaLocal(notas); 
+    window.location.href = `Nota.html?id=${encodeURIComponent(notas.id)}`;
+  });
+  
+  papelera.addEventListener('click',function(event) {
+   localStorage.removeItem(nota.id);
+    window.location.href = `inicio.html`;
+  });
+  
+  editarPortada.addEventListener('click',function(event) {
+    const galeria = document.getElementById('galeria');
+    galeria.classList.toggle('mostrargaleria');
+
+   });
+
+
+
+
+ // Arreglo con los nombres de las imágenes en la carpeta "img/fondos"
+const imagenes = [
+    "fondo2.jpg",
+    "fondo3.jpg",
+    "fondo4.jpg",
+    "fondo5.jpg", 
+    "fondo6.jpg",
+    "fondo67.jpg"
+    
+    // Agrega más nombres de imágenes según sea necesario
+  ];
+  
+  // Seleccionar el contenedor de la galería
+  const galeria = document.getElementById('galeria');
+  
+  // Recorrer el arreglo de imágenes y crear elementos <img> dinámicamente
+  imagenes.forEach(imagen => {
+    // Crear un nuevo elemento <img>
+    const imgElement = document.createElement('img');
+    // Asignar la ruta correcta de la imagen
+    imgElement.src = `img/fondos/${imagen}`;
+  
+    imgElement.addEventListener('click', () => {
+      const relativePath = '../'+imgElement.src.split(window.location.origin + '/')[1];
+      portada.style.backgroundImage = "url('"+relativePath+"')";
+       nota.setPortada(relativePath);
+       guardarNotaLocal(nota); 
+       galeria.classList.remove('mostrargaleria');
+    });
+  
+    // Agregar el <img> a la galería
+    galeria.appendChild(imgElement);
+  });
+
+  document.addEventListener('click', (event) => {
+    const galeria = document.getElementById('galeria');
+    if (!galeria.contains(event.target) && !editarPortada.contains(event.target)) {
+        galeria.style.display = 'none'
+        galeria.classList.remove('mostrargaleria');
+    }
+  });
+
+
+
+
+
 
 } else {
-  console.log('No hay notas guardadas en el localStorage.');
+    window.location.href = `inicio.html`;
 }
 
 

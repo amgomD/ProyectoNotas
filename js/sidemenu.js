@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const barraSuperior = document.getElementById("barraSuperior");
     const contenidoPrincipal = document.getElementById("contenidoPrincipal");
@@ -50,7 +52,7 @@ function cargarnotas(){
         const notaObj = JSON.parse(valor);
         
         menucont+= ` <div id="${notaObj.id}" class="items">
-        <img src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f550.svg" width="15px"
+        <img style="border-radius:500px;" src="${notaObj.portada}" width="15px"
             alt="icon" id="icon"> ${notaObj.titulo}
     </div>
    `

@@ -5,7 +5,6 @@ document.addEventListener('click', function(event) {
     if ( event.target !== textarea) {
         editortext.document.designMode = 'Off';
     }
-
     
 });
 function execCmd(command){

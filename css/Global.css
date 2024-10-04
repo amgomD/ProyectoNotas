@@ -75,6 +75,7 @@ font-size: 20px;
     background-color: rgba(0, 255, 255, 0);
     display: flex;
     flex-direction: row;
+    padding-right: 20px;
     gap: 5px;
 }
 
@@ -112,6 +113,29 @@ font-size: 20px;
     color: rgba(255, 255, 255, 0.283);
 }
 
+.opitems{
+    color: rgba(255, 255, 255, 0.473);
+    display:  flex;
+    flex-direction: row;
+    padding: 5px;
+    gap: 10px;
+    font-size: 14px;
+    align-items: center;
+    white-space: nowrap;
+  min-width: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.opitems p{
+  
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+    overflow: hidden; /* Oculta el texto que se desborda del contenedor */
+    text-overflow: ellipsis;
+    width: 150px;
+}
+.opitems i{
+    color: rgba(255, 255, 255, 0.283);
+}
 .iconstem{
     color: rgba(255, 255, 255, 0.034);
 }
@@ -187,7 +211,7 @@ font-size: 20px;
 .Encabezado{
     align-items: center;
     font-size: 36px;
-
+width: 100%;
     gap: 10px;
     display: flex;
 }
@@ -344,3 +368,176 @@ ol{
     list-style: initial;
     margin-left: 20px;
 }
+
+#galeria {
+    position: absolute;
+    top: 90px;
+    display: none;
+    right: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    width: 600px;
+    background-color: #202020;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.219);
+    z-index: 100000;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .mostrargaleria{
+    display: flex !important;
+  }
+  .ocultarGaleria{
+    display: none !important;
+  }
+  #galeria img {
+    width: 150px;
+    cursor: pointer;
+    height: 100px;
+    object-fit: cover;
+    margin: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  #galeria img:hover {
+    transform: scale(1.1);
+  }
+
+#menuop {
+    position: absolute;
+    padding: 20px;
+    top: -15220px;
+    right: 20px;
+    margin-top: 10px;
+    width: auto;
+    background-color: #202020;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.219);
+    border-radius: 10px;
+    border-right: #d3d3d300 solid 0.1px;
+    z-index: 100000;
+    transition: background-color 0.3s ease, color 0.5s ease; 
+
+}
+
+#menuop2 {
+    position: absolute;
+    padding: 20px;
+    top: -15220px;
+    right: 20px;
+    margin-top: 10px;
+    width: 210px;
+    background-color: #131313;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.219);
+    border-radius: 10px;
+
+    border: 1px solid #d3d3d318 ;
+    transition: background-color 0.3s ease, color 0.5s ease; 
+}
+
+#copiar {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    padding: 10px;
+    margin-top: 10px;
+    color: #b8b8b8;
+    cursor: pointer;
+    width: auto;
+    background-color: #131313;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.219);
+    border-radius: 10px;
+    border: 1px solid #d3d3d318 ;
+    transition: background-color 0.3s ease, color 0.5s ease; 
+}
+
+#EditarPortada {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    padding: 10px;
+    z-index: 2;
+    font-size: 13px;
+    padding: 10px;
+    margin-top: 10px;
+    color: #646464;
+    cursor: pointer;
+    width: auto;
+    background-color: #131313;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.219);
+    border-radius: 10px;
+    border: 1px solid #d3d3d318 ;
+    transition: background-color 0.3s ease, color 0.5s ease; 
+}
+#EditarPortada:hover{
+    color: #ffffff;
+}
+
+#menuop2 .opitems{
+    cursor: pointer;
+    padding: 10px;
+}
+
+#menuop2 .opitems:hover{
+    background-color: #2e2e2e;
+    border-radius: 10px;
+    color: white;
+   
+    transition: left 0.1s ease-in;
+}
+
+
+#menuop .opitems{
+    cursor: pointer;
+    padding: 8px;
+}
+
+#menuop .opitems:hover{
+    background-color: #2e2e2e;
+    border-radius: 10px;
+    color: white;
+   
+    transition: left 0.1s ease-in;
+}
+
+.renglon{
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+.inputnew{
+    border: 1px solid #525252;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #2b2b2b;
+    color: #d3d3d3;
+}
+hr{
+   height:1px ;
+   border-radius: 20px;
+   background-color: #2b2b2b; 
+   border: .5px solid #2b2b2b; 
+   margin: 10px;
+}
+.btninvitar{
+    border-radius: 10px;
+    width: 60px;
+    border: 1px solid #2a9df5;
+    background-color: #1290f0;
+    color: white;
+  
+    cursor: pointer;
+
+}
+.mostrar {
+    top: 50px !important;
+    right: 20px;
+    display: block  !important;
+}
+
+.ocultar {
+    top: -15220px;
+    right: 20px;
+    display: none  !important;
+}
+
