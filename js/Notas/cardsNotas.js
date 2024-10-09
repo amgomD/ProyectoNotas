@@ -12,7 +12,7 @@ function cargarnotasinicio(){
         let clave = localStorage.key(i); // Obtener la clave
         let valor = localStorage.getItem(clave); // Obtener el valor
         const notaObj = JSON.parse(valor);
-        
+        if (notaObj.id) {
         menucont+= `  <div id="${notaObj.id}" class="card">
                     <div style="background-image: url(${notaObj.portada});" class="portada-card">
             
@@ -26,6 +26,7 @@ function cargarnotasinicio(){
                     </div>
                 </div>
    `
+        }
       }
 
 
