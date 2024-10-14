@@ -16,46 +16,57 @@ function cargarnotas(){
 
     let todosLosDatos = {};
     let menucont =
-    `   <div class="menu-Content">
-          <div class="perfil">
-              <img src="img/perfil.webp" alt="fotoperfil">
-              <p id="username">ANDRES GOMEZ Niño</p>
-              <i id="perfil-flecha" class="fa-solid fa-chevron-down"></i>
-              <i class="fa-solid fa-pen-to-square"></i>
-          </div>
-          <div class="items">
-              <i class=" fa-solid fa-magnifying-glass"></i>
-              Buscar
-          </div>
-          <div id="inicio" class="items">
-              <i class="fa-solid fa-house"></i> Inicio
-          </div>
-          <div class="items">
-              <i class="fa-solid fa-gear"></i>Configuraciones
-          </div>
+    `      
+    <div class="menu-Content">
+        <div class="perfilnuevo">
+           <div class="perIzq">
+           </div>
+           <div class="perDer">
+   
+            <p id="username">ANDRES GOMEZ Niño</p>
+            <i id="perfil-flecha" class="fa-solid fa-chevron-down"></i>
+            <i class="fa-solid fa-pen-to-square"></i>
+           </div>
+       
 
-          <div class="tituloitem">
-              Favoritos
-          </div>
-          <div class="items">
-              <img src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f550.svg" width="15px"
-                  alt="icon" id="icon"> Configuraciones
-          </div>
-          <div class="tituloitem">
-              Privado
-          </div>
+        </div>
+
+
+        <div class="items">
+            <i class=" fa-solid fa-magnifying-glass"></i>
+            Buscar
+        </div>
+        <div id="inicio" class="items">
+            <i class="fa-solid fa-house"></i> Inicio
+        </div>
+        <div class="items">
+            <i class="fa-solid fa-gear"></i>Configuraciones
+        </div>
+
+        <div class="tituloitem">
+            Favoritos
+        </div>
+        <div class="items">
+            <img src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f550.svg" width="15px"
+                alt="icon" id="icon"> Configuraciones
+        </div>
+        <div class="tituloitem">
+            Privado
+        </div>
           `;
        // Recorrer cada clave en localStorage
        for (let i = 0; i < localStorage.length; i++) {
         let clave = localStorage.key(i); // Obtener la clave
         let valor = localStorage.getItem(clave); // Obtener el valor
         const notaObj = JSON.parse(valor);
-        
-        menucont+= ` <div id="${notaObj.id}" class="items">
-        <img style="border-radius:500px;" src="${notaObj.portada}" width="15px"
-            alt="icon" id="icon"> ${notaObj.titulo}
-    </div>
-   `
+        if(notaObj.isNota){
+            menucont+= ` <div id="${notaObj.id}" class="items">
+            <img style="border-radius:500px;" src="${notaObj.portada}" width="15px"
+                alt="icon" id="icon"> ${notaObj.titulo}
+        </div>
+       `
+        }
+  
       }
 
 
@@ -112,7 +123,7 @@ items.forEach(item => {
 
     // Función para ocultar el menú lateral
     function ocultarMenu() {
-        menuLateral.style.left = "-250px"; // Desliza el menú hacia fuera de la vista
+        menuLateral.style.left = "-590px"; // Desliza el menú hacia fuera de la vista
     }
 
     // Mostrar el menú cuando el cursor está sobre el ícono o el menú

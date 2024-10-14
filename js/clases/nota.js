@@ -14,19 +14,23 @@ return this.clone();
      nota.portada = this.proto.portada;
      nota.fecha = this.proto.fecha;
      nota.contenido = this.proto.contenido;
+     nota.IsNota = this.proto.IsNota;
+     nota.IdFolder = this.proto.IdFolder;
      return nota
     }
 
 }
 
 class Nota{
-    constructor(id,titulo,comentario,portada,fecha,contenido){
+    constructor(id,titulo,comentario,portada,fecha,contenido,IsNota,IdFolder){
         this.id = id;
         this.titulo = titulo;
         this.comentario = comentario;
         this.portada = portada;
         this.fecha = fecha;
         this.contenido = contenido;
+        this.IsNota = true;
+        this.IdFolder = IdFolder;
     }
 
     getNota(){
@@ -36,12 +40,16 @@ class Nota{
             comentario:this.comentario,
             portada:this.portada,
             fecha:this.fecha,
-            contenido:this.contenido
+            contenido:this.contenido,
+            IsNota:this.IsNota,
+            IdFolder : this.IdFolder
         };
     }
 
 
-
+    setFolder(newIdFolder){
+        this.IdFolder = newIdFolder;
+    }
     setTitulo(newTitulo){
         this.titulo = newTitulo;
     }
@@ -67,7 +75,7 @@ const mes = (fechaActual.getMonth() + 1).toString().padStart(2, '0'); // Los mes
 const dia = fechaActual.getDate().toString().padStart(2, '0');
 
     let nuevaNota = new Nota(id,"",
-        "","../img/fondo1.png",`${dia}/${mes}/${año}`,"");
+        "","../img/fondo1.png",`${dia}/${mes}/${año}`,"",true,"");
       
         guardarNotaLocal(nuevaNota); 
         window.location.href = `Nota.html?id=${encodeURIComponent(nuevaNota.id)}`;

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="titulo">Carpeta</title>
+    <link rel="stylesheet" href="css/Global.css" />
+    <link rel="stylesheet" href="css/inicio.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
+      integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body  style="  background-color: #191919;">
+
+
+
+        <!-- Menú lateral -->
+     
+        <div id="menu-lateral">
+   
+     
+        </div>
+        
+    <div id="menuop" class="menuop-hidden">
+      <div id="CopiarNota" class="opitems"><i class="fa-solid fa-copy"></i>Copiar nota</div>
+      <div class="opitems"><i class="fa-solid fa-arrows-up-down-left-right"></i>Mover a</div>
+      
+      <div  id="papelera" class="opitems"><i class="fa-solid fa-trash"></i>Mover a la papelera</div>
+    <hr>
+      <div class="renglon">
+        <input id="invitar" class="inputnew" type="email" placeholder="Correo electronico separado por comas">
+     <button class="btninvitar">Invitar</button>
+      </div>
+    </div>
+    <div class="barrasuperior" id="barraSuperior">
+      <div class="ladoIzq">
+        <div id="Menu" >  
+            <i class="fa-solid fa-bars"></i>
+            <p id="directorio">Directorio/Titulo
+        </div>
+
+
+        </p>
+      </div>
+      <div class="ladoDer">
+        <p id="fecha">Editado 18/08/2024</p>
+        <p id="compartir">Compartir</p>
+        <i id="comentarios" class="fa-regular fa-comment-dots"></i>
+        <i id="historial" class="fa-solid fa-clock"></i>
+       <p  id="opciones" >
+        <i class="fa-solid fa-ellipsis-vertical"></i>  
+ 
+       </p>   
+      
+      </div>
+
+
+
+    </div>
+    
+  <div class="cuerpo" id="contenidoPrincipal">    
+
+    <div class="contenido-cuerpo">
+
+      <div class="Encabezado">
+        
+        <div id="iconotitulo" class="icono"><i class="fa-solid fa-folder"></i> </div>
+     
+        <input class="Encabezado-text" 
+        type="text" 
+       
+        id="encabezado"
+        placeholder="Sin titulo">
+    
+      </div>
+      <div class="propiedades">
+        <table class="two-column-table">
+            <tbody>
+                <tr>
+                    <td><p class="subtitulo">Prioridad</p></td>
+                    <td><select class="prioridad" name="prioridad" id="prioridad">
+                        <option value="1">Baja</option>
+                        <option value="2">Media</option>
+                        <option value="3">Alta</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><p class="subtitulo">Equipo</p></td>
+                    <td>yo</td>
+                </tr>
+                <tr>
+                    <td><p class="subtitulo">Fecha</p></td>
+                    <td><p id="fechapropiedades"></p></td>
+                </tr>
+                <tr>
+                    <td><p class="subtitulo">Etiquetas</p></td>
+                    <td><div class="content-etiqueta">
+                        
+                        <!-- Aquí se agregarán los elementos -->
+                        <input class="input" type="text" id="inputText" placeholder="Escribe la etiqueta">
+                      
+                        
+                    </div></td>
+                   
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>  <div id="result"></div> </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="descripcion">
+        <h4>Descripcion</h4>
+        <textarea placeholder="Agrega una descripción ..." class="input" type="text" id="descripcion"></textarea>
+      </div>
+      <div class="subtitulo-seccion">
+        <i class="fa-regular fa-clock"></i>Notas
+        <p class="plus"  id="compartir"> <i class="fa-solid fa-plus"></i></p>
+
+    </div>
+    <div id="carruselcard" class="carruselcard">
+
+    </div>
+    </div>
+
+ </div>
+
+ <script src="js/clases/nota.js"></script>
+ <script src="js/clases/proyecto.js"></script>
+ <script src="js/Menu/sidemenu.js"></script>
+ <script src="js/Proyectos/CargarProyecto.js"></script>
+
+</body>
+  
+</html>
