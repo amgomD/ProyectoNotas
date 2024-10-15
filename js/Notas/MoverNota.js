@@ -27,7 +27,7 @@ function cargarCarpetas(nid){
         let valor = localStorage.getItem(clave); // Obtener el valor
         const notaObj = JSON.parse(valor);
         console.log(notaObj)
-        if (!notaObj.IsNota) {
+        if (!notaObj.IsNota && notaObj.id) {
         menucont+= `  
         <div id="${notaObj.id}" class="carpeta">
               <h4 style="color:${notaObj.colorIcon}"  id="icon-carpeta"> <i class="fa-solid fa-folder"></i>

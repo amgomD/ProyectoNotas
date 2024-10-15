@@ -50,7 +50,7 @@ function cargarProyectos(){
       let clave = localStorage.key(i); // Obtener la clave
       let valor = localStorage.getItem(clave); // Obtener el valor
       const notaObj = JSON.parse(valor);
-      if (!notaObj.IsNota) {
+      if (!notaObj.IsNota && notaObj.id) {
       menucont+= `  <div style="color:${notaObj.colorIcon}"  id="${notaObj.id}" class="folder">
                  <i class="nfolder fa-solid fa-folder"></i>
             <div class="folder-Titulo">
