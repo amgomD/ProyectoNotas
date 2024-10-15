@@ -71,12 +71,15 @@ encabezado.addEventListener('input', function(event) {
   });
  
 
-
-  papelera.addEventListener('click',function(event) {
+  const papelera = document.querySelectorAll('#papelera');
+      papelera.forEach(nitem => {
+        nitem.addEventListener('click', (event) => {
     eliminarnotas(proyecto);
     localStorage.removeItem(newProyecto.id);
    window.location.href = `inicio.html`;    
-  });
+          });
+
+
 
 // Escucha el evento 'keypress' en el input
 document.getElementById('inputText').addEventListener('keypress', function(event) {
