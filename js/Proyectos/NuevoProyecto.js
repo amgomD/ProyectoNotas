@@ -1,3 +1,75 @@
+//---------------------- funcion que utiliza Builder para crear el proyecto
+
+function crearProyecto(){
+
+    let newProyecto = new Proyecto();
+    const encabezado = document.getElementById('encabezado').value;
+    const prioridad = document.getElementById('prioridad').value;
+    const fechapropiedades = document.getElementById('fechapropiedades').innerText; // Asumiendo que la fecha se establecerá como texto
+    const descripcion = document.getElementById('descripcion').value;
+    const color = document.getElementById('colorPicker').value;
+    if (encabezado) {
+        newProyecto.setNombre(encabezado).build();
+    }
+    if (prioridad) {
+        newProyecto.setPrioridad(prioridad).build();
+    }
+
+    if (fechapropiedades) {
+        newProyecto.setFechaCreacion(fechapropiedades).build();
+    }
+
+    if (descripcion) {
+        newProyecto.setDescripcion(descripcion).build();
+    }
+    if(color) {
+        newProyecto.setcolorIcon(color).build();   
+    }else{
+        newProyecto.setcolorIcon('#e8e8e8').build();   
+    }
+    if (selectedCheckboxes.length > 0) {
+
+        selectedCheckboxes.forEach(function(item, index) {
+           
+            let notaGuardada = localStorage.getItem(item);
+            if (notaGuardada) {
+              let notaObj = JSON.parse(notaGuardada);
+              let nota = new Nota(
+                notaObj.id,
+                notaObj.titulo,
+                notaObj.comentario,
+                notaObj.portada,
+                notaObj.fecha,
+                notaObj.contenido,
+                true,
+                newProyecto.getId()
+              );
+              newProyecto.addNota(nota).build();
+              guardarNotaLocal(nota); 
+       
+            }
+        });
+
+  }
+
+    if (itemsArray.length > 0) {
+        itemsArray.forEach(function(item, index) {
+            newProyecto.addEtiqueta(item).build();
+        });
+      
+    }
+
+guardarProyectoEnLocalStorage(newProyecto)
+ window.location.href = `inicio.html`;
+}
+
+function guardarProyectoEnLocalStorage(Proyecto) {
+    let Proyectocreada = Proyecto.build();
+    localStorage.setItem(Proyectocreada.id, JSON.stringify(Proyectocreada));
+}
+
+
+//----------------------- funciones del front
 function abrir(){
     let modalnew = document.getElementById('modalnew');
     modalnew.classList.toggle('open')
@@ -11,8 +83,6 @@ function cerrar(){
     const menu = document.getElementById('nuevoop');
     menu.style.display = 'none';
 }
-
-
 
 let fechapropiedades = document.getElementById('fechapropiedades');
 const date = new Date();
@@ -60,7 +130,6 @@ function updateHTML() {
         resultDiv.appendChild(itemElement);
     });
 }
-
 
 // Obtén los elementos del DOM
 const folderIcon = document.getElementById('foldericon');
@@ -132,81 +201,3 @@ function cardsincarpeta(){
      });
         });
 }
-
-
-function crearProyecto(){
-
-    let newProyecto = new Proyecto();
-    const encabezado = document.getElementById('encabezado').value;
-    const prioridad = document.getElementById('prioridad').value;
-    const fechapropiedades = document.getElementById('fechapropiedades').innerText; // Asumiendo que la fecha se establecerá como texto
-    const descripcion = document.getElementById('descripcion').value;
- const color = document.getElementById('colorPicker').value;
-    if (encabezado) {
-        newProyecto.setNombre(encabezado).build();
-    }
-
-    if (prioridad) {
-        newProyecto.setPrioridad(prioridad).build();
-    }
-
-    if (fechapropiedades) {
-        newProyecto.setFechaCreacion(fechapropiedades).build();
-    }
-
-    if (descripcion) {
-        newProyecto.setDescripcion(descripcion).build();
-    }
-    if(color) {
-        newProyecto.setcolorIcon(color).build();   
-    }else{
-        newProyecto.setcolorIcon('#e8e8e8').build();   
-    }
-    if (selectedCheckboxes.length > 0) {
-
-        selectedCheckboxes.forEach(function(item, index) {
-           
-            let notaGuardada = localStorage.getItem(item);
-            // 2. Comprobar si el dato existe
-            if (notaGuardada) {
-              // 3. Convertir el JSON en un objeto JavaScript
-              let notaObj = JSON.parse(notaGuardada);
-            
-              // 4. Crear una instancia de la clase Nota usando el objeto
-              let nota = new Nota(
-                notaObj.id,
-                notaObj.titulo,
-                notaObj.comentario,
-                notaObj.portada,
-                notaObj.fecha,
-                notaObj.contenido,
-                true,
-                newProyecto.getId()
-              );
-              newProyecto.addNota(nota).build();
-              guardarNotaLocal(nota); 
-       
-            }
-
-
-        });
-
-      
-  }
-
-    if (itemsArray.length > 0) {
-        itemsArray.forEach(function(item, index) {
-            newProyecto.addEtiqueta(item).build();
-        });
-      
-    }
-
-guardarProyectoEnLocalStorage(newProyecto)
- window.location.href = `inicio.html`;
-}
-
-function guardarProyectoEnLocalStorage(Proyecto) {
-    let Proyectocreada = Proyecto.build();
-    localStorage.setItem(Proyectocreada.id, JSON.stringify(Proyectocreada));
-}
-

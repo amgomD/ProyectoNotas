@@ -16,12 +16,8 @@ let result = document.getElementById('result'); // Asumiendo que la fecha se est
 let fecha = document.getElementById("fecha");
 const Proyectoguardado = localStorage.getItem(valorParametro);
 
-// 2. Comprobar si el dato existe
 if (Proyectoguardado) {
-  // 3. Convertir el JSON en un objeto JavaScript
   const proyecto = JSON.parse(Proyectoguardado);
-
-  // 4. Crear una instancia de la clase Nota usando el objeto
   let newProyecto = new Proyecto();
   newProyecto.setId(valorParametro).build();
     newProyecto.setNombre(proyecto.nombre).build();
@@ -123,14 +119,10 @@ function updateHTML() {
     window.location.href = `inicio.html`;
 }
 
-
-
 function guardarProyectoEnLocalStorage(Proyecto) {
     let Proyectocreada = Proyecto;
     localStorage.setItem(valorParametro, JSON.stringify(Proyecto));
 }
-
-
 
 function cargarnotasinicio(){
     let carruselcard = document.getElementById("carruselcard");
@@ -170,9 +162,6 @@ function cargarnotasinicio(){
       carruselcard.innerHTML = menucont;
 }
 
-
-
-
 function nucrearnota(newProyecto){
     let id = Math.random().toString(36).substr(2, 9);
     const fechaActual = new Date();
@@ -189,8 +178,6 @@ const dia = fechaActual.getDate().toString().padStart(2, '0');
         window.location.href = `Nota.html?id=${encodeURIComponent(nuevaNota.id)}`;
 
 }
-
-
 
 const cards = document.querySelectorAll('.card');
 cards.forEach(item => {
@@ -243,7 +230,6 @@ cards.forEach(item => {
   });
 
   });
-
 
   document.getElementById('opciones').addEventListener('click', function(event) {
     const menu = document.getElementById('menuop');

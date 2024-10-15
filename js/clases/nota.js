@@ -82,12 +82,6 @@ const dia = fechaActual.getDate().toString().padStart(2, '0');
 
 }
 
-
-
-/*let notaprototipo = new Nota("este es un prototipo","hola","fdmfmf","3434","skdjksjd");
-let notas = new NotaPrototype(notaprototipo);
-console.log(notas);*/
-
 function guardarNotaLocal(nota) {
     let id = Math.random().toString(36).substr(2, 9);
     const fechaActual = new Date();

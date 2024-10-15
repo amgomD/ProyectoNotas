@@ -11,9 +11,9 @@ let iframe = document.getElementById('editortext');
 let copiarNota = document.getElementById('CopiarNota');
 let copiar = document.getElementById('copiar');
 let editarPortada = document.getElementById('EditarPortada');
+let directorio= document.getElementById('directorio');
 const notaGuardada = localStorage.getItem(valorParametro);
 
-// 2. Comprobar si el dato existe
 if (notaGuardada) {
   // 3. Convertir el JSON en un objeto JavaScript
   const notaObj = JSON.parse(notaGuardada);
@@ -35,12 +35,18 @@ titulo.innerHTML = icono.innerHTML+nota.titulo;
 descripcion.value = nota.comentario;
 portada.style.backgroundImage = "url('"+nota.portada+"')";
 fecha.innerHTML = "Editado "+nota.fecha;
-
+traerDirectorio(nota.IdFolder,nota.titulo);
 encabezado.addEventListener('input', function(event) {
     const valor = event.target.value;
     nota.setTitulo(valor);
     guardarNotaLocal(nota); 
   });
+
+  directorio.addEventListener('click', function(event) {
+    window.location.href = `Proyectos.html?id=${nota.IdFolder}`;
+
+  });
+
 
   descripcion.addEventListener('input', function(event) {
     const valor = event.target.value;
@@ -240,3 +246,14 @@ const imagenes = [
 
 
 
+function traerDirectorio(id,titulo){
+  let objeto = JSON.parse(localStorage.getItem(id));
+
+  // Verificar si el objeto existe
+  if (objeto) {
+      const nombre = objeto.nombre;
+      const id = objeto.id;
+      directorio.innerHTML = nombre+' / '+titulo
+}
+
+}
