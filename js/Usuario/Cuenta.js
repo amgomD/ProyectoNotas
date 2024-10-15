@@ -106,7 +106,7 @@ let nuevoElemento =   `
         </div>
     </div>
 <div class="planes">
-    <div id="0" class="basico">
+    <div id="1" class="basico">
      <h4>Plan basico</h4>
      <h1>$0</h1>
      <div class="cosas">
