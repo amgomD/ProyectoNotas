@@ -1,0 +1,105 @@
+
+
+
+
+
+.contenedor-perfil{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-perfil{
+    background-color: rgb(34, 34, 34);
+    width: 600px;
+    height: auto;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.modal-perfil .perfilnuevo{
+    width: 100%;
+}
+
+.modal-perfil .perDer{
+flex-direction: column;
+}
+
+sub{
+    color: rgb(131, 131, 131);
+}
+
+.columnas-perfil{
+width: 100%;
+display: flex;
+}
+.item-perfil{
+    width: 100%;
+}
+.info-perfil{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 40%;
+}
+
+.planes{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+
+    gap: 10px;
+
+}
+.planes p{
+    font-size: 12px;
+}
+.cosas{
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+.basico{
+    background-image: linear-gradient(to right top, #1a0032, #1e033c, #240345, #2b024f, #320059);
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.pro{
+    background-image: linear-gradient(to right top, #07395a, #004d6e, #006282, #007893, #098ea3);
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.premium{
+    background-image: linear-gradient(to right top, #009661, #008a71, #007e7b, #00707c, #006276);
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.seleccionado{
+    border: 1px solid;    
+}
+
+.btn-solid{
+    background-color: #16A2FF;
+     text-align: center;
+     color: white;
+     cursor: pointer;
+     margin-top: 20px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+}

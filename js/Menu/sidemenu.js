@@ -24,8 +24,7 @@ function cargarnotas(){
            <div class="perDer">
    
             <p id="username">ANDRES GOMEZ Niño</p>
-            <i id="perfil-flecha" class="fa-solid fa-chevron-down"></i>
-            <i class="fa-solid fa-pen-to-square"></i>
+           <i style="cursor:pointer;" onclick="cuenta()" class="fa-solid fa-pen-to-square"></i>
            </div>
        
 
@@ -53,6 +52,12 @@ function cargarnotas(){
         <div class="tituloitem">
             Privado
         </div>
+
+
+
+
+
+
           `;
        // Recorrer cada clave en localStorage
        for (let i = 0; i < localStorage.length; i++) {
@@ -71,7 +76,10 @@ function cargarnotas(){
 
 
           
-          menucont+= `</div>`;
+          menucont+= `</div>
+          
+          
+          `;
 
           bmenuLateral.innerHTML = menucont;
 
