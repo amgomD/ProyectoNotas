@@ -1,12 +1,43 @@
 class Usuario {
-    constructor(nombre, email) {
+    constructor(nombre, email,fecha,plan) {
         this.nombre = nombre;
         this.email = email;
+        this.fecha = fecha;
+        this.plan = plan;
     }
 
-    getDescripcion() {
-        return `${this.nombre} tiene acceso básico`;
+
+getNombre(){
+    return this.nombre
+}
+
+getEmail(){
+    return this.email
+}
+getfecha(){
+    return this.fecha
+} 
+getplan(){
+    return this.plan
+} 
+setPlan(plan){
+    this.plan = plan;  
+}
+getDescripcion() {
+        return `Plan basico`;
     }
+
+
+    getInfo() {
+        return {
+            nombre: this.nombre,
+            email: this.email,
+            fecha: this.fecha,
+            plan: this.plan,
+        };
+    }
+
+
 
     getCosto() {
         return 0; // Plan básico es gratuito
@@ -34,7 +65,26 @@ class UsuarioDecorator {
     getDescripcion() {
         return this.usuario.getDescripcion();
     }
-
+    getNombre(){
+        return this.nombre
+    }
+    
+    getEmail(){
+        return this.email
+    }
+    getfecha(){
+        return this.fecha
+    } 
+    getplan(){
+        return this.plan
+    } 
+    setPlan(plan){
+        this.plan = plan;  
+    }
+    getDescripcion() {
+            return `Plan basico`;
+        }
+    
     getCosto() {
         return this.usuario.getCosto();
     }
@@ -46,11 +96,28 @@ class UsuarioDecorator {
 // Decorador UsuarioPro---------------------------
 class UsuarioPro extends UsuarioDecorator {
     getDescripcion() {
-        return `${this.usuario.getDescripcion()} y acceso Pro`;
+        return `${this.usuario.getDescripcion()} y Pro`;
     }
+    getNombre(){
+        return this.usuario.getNombre();
+    }
+    
+    getEmail(){
+        return this.usuario.getEmail();
+    }
+    getfecha(){
+        return this.usuario.getfecha();
+    } 
+    getplan(){
+        return this.usuario.getplan();
+    } 
+
 
     getCosto() {
-        return this.usuario.getCosto() + 15;
+        return this.usuario.getCosto() + 20;
+    }
+    setPlan(plant){
+        this.usuario.plan = plant;
     }
 
     accesoExtra() {
@@ -70,11 +137,26 @@ class UsuarioPro extends UsuarioDecorator {
 // Decorador UsuarioPremium
 class UsuarioPremium extends UsuarioDecorator {
     getDescripcion() {
-        return `${this.usuario.getDescripcion()} y acceso Premium`;
+        return `${this.usuario.getDescripcion()} y  Premium`;
     }
-
+    getNombre(){
+        return this.usuario.getNombre();
+    }
+    
+    getEmail(){
+        return this.usuario.getEmail();
+    }
+    getfecha(){
+        return this.usuario.getfecha();
+    } 
+    getplan(){
+        return this.usuario.getplan();
+    } 
     getCosto() {
-        return this.usuario.getCosto() + 25;
+        return this.usuario.getCosto() + 30;
+    }
+    setPlan(plant){
+        this.usuario.plan = plant;
     }
 
     accesoExtra() {
@@ -93,51 +175,3 @@ class UsuarioPremium extends UsuarioDecorator {
 }
 
 
-
-// Crear un usuario básico
-let usuario = new Usuario('Carlos', 'carlos@mail.com');
-console.log(usuario.getDescripcion()); // Carlos tiene acceso básico
-console.log('Costo: ', usuario.getCosto()); // Costo: 0
-console.log(usuario.accesoExtra());
-/* [
-    {
-        ProyectosIlimitados: false,
-        SubidaArchivosIlimitada: false,
-        ExportacionMasivaPDF: false,
-        ControlVersiones: '7',
-        SeguridadAvanzada: false,
-        InvitarColaboradores: 10
-    }
-] */
-
-// Actualizar a usuario Pro
-usuario = new UsuarioPro(usuario);
-console.log(usuario.getDescripcion()); // Carlos tiene acceso básico y acceso Pro
-console.log('Costo: ', usuario.getCosto()); // Costo: 15
-console.log(usuario.accesoExtra());
-/* [
-    {
-        ProyectosIlimitados: true,
-        SubidaArchivosIlimitada: true,
-        ExportacionMasivaPDF: true,
-        ControlVersiones: '30',
-        SeguridadAvanzada: false,
-        InvitarColaboradores: 100
-    }
-] */
-
-// Actualizar a usuario Premium
-usuario = new UsuarioPremium(usuario);
-console.log(usuario.getDescripcion()); // Carlos tiene acceso básico y acceso Pro y acceso Premium
-console.log('Costo: ', usuario.getCosto()); // Costo: 40
-console.log(usuario.accesoExtra());
-/* [
-    {
-        ProyectosIlimitados: true,
-        SubidaArchivosIlimitada: true,
-        ExportacionMasivaPDF: true,
-        ControlVersiones: 'ilimitado',
-        SeguridadAvanzada: true,
-        InvitarColaboradores: 250
-    }
-] */
