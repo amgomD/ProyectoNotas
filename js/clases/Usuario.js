@@ -155,9 +155,7 @@ class UsuarioPremium extends UsuarioDecorator {
     getCosto() {
         return this.usuario.getCosto() + 30;
     }
-    setPlan(plant){
-        this.usuario.plan = plant;
-    }
+
 
     accesoExtra() {
         const permisos = this.usuario.accesoExtra();

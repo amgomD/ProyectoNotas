@@ -207,11 +207,13 @@ document.getElementById('guardarsu').addEventListener('click',function(event){
 function salisperfil(){
     let modalnew = document.getElementById('modalperfil');
     modalnew.classList.toggle('open')
+    modalnew.remove();
 }
 
 function guardarsus( usuario){
     console.log(usuario)
         guardarusuariolocal(usuario);
+        salisperfil();
 }
    
 
