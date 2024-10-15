@@ -97,8 +97,21 @@ gap: 10px;
     padding: 1px 5%;
   }
 
-
   
+  .carpeta{
+    margin: 10px;
+    background-color: #383838;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .carpeta:hover{
+      background-color: #505050;
+
+  }
+  #content-carpetas{
+    padding-bottom: 20px;
+  }
 .cardnew{
   background-color: #202020 !important ;
   max-width: 150px;

@@ -25,7 +25,9 @@ if (notaGuardada) {
     notaObj.comentario,
     notaObj.portada,
     notaObj.fecha,
-    notaObj.contenido
+    notaObj.contenido,
+    true,
+    notaObj.IdFolder
   );
 
 encabezado.value = nota.titulo;

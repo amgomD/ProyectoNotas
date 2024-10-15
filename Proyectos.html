@@ -25,11 +25,8 @@
      
         </div>
         
-    <div id="menuop" class="menuop-hidden">
-      <div id="CopiarNota" class="opitems"><i class="fa-solid fa-copy"></i>Copiar nota</div>
-      <div class="opitems"><i class="fa-solid fa-arrows-up-down-left-right"></i>Mover a</div>
-      
-      <div  id="papelera" class="opitems"><i class="fa-solid fa-trash"></i>Mover a la papelera</div>
+    <div id="menuop" class="menuop-hidden"> 
+      <div   id="papelera" class="opitems"><i class="fa-solid fa-trash"></i>Mover a la papelera</div>
     <hr>
       <div class="renglon">
         <input id="invitar" class="inputnew" type="email" placeholder="Correo electronico separado por comas">
@@ -120,7 +117,7 @@
       </div>
       <div class="subtitulo-seccion">
         <i class="fa-regular fa-clock"></i>Notas
-        <p class="plus"  id="compartir"> <i class="fa-solid fa-plus"></i></p>
+        <p  class="plus"  id="nuevo"> <i class="fa-solid fa-plus"></i></p>
 
     </div>
     <div id="carruselcard" class="carruselcard">
@@ -130,10 +127,37 @@
 
  </div>
 
- <script src="js/clases/nota.js"></script>
- <script src="js/clases/proyecto.js"></script>
+ <div id="menuop2" class="menuop-hidden">
+  <div id="movera" class="opitems"><i class="fa-solid fa-arrows-up-down-left-right"></i>Mover a</div>
+  <div id="papelera" class="opitems"><i class="fa-solid fa-trash"></i>Mover a la papelera</div>
+  <hr>
+
+</div>
+
+
+<div id="modalmover" class="modal-wrapper">
+  <div class="modal">
+    <div class="head">
+      <h3 id="foldericon"> <i class="fa-solid fa-folder"></i>
+        Carpetas
+      </h3>
+      <input type="color" id="colorPicker" style="display: none;" value="#e8e8e8">
+      <i style="cursor: pointer;" onclick="cerrarmover()"   class="fa-solid fa-xmark"></i>
+    </div>
+    <div id="content-carpetas" class="content">
+      
+            
+    </div>
+  </div>
+</div>
+
+
+
+<script src="js/clases/nota.js"></script>
+<script src="js/clases/proyecto.js"></script>
  <script src="js/Menu/sidemenu.js"></script>
  <script src="js/Proyectos/CargarProyecto.js"></script>
+ <script src="js/Notas/MoverNota.js"></script>
 
 </body>
   

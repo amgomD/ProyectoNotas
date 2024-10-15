@@ -79,7 +79,7 @@ function cargarProyectos(){
 const cards = document.querySelectorAll('.card');
 cards.forEach(item => {
     item.addEventListener('click', function() {
-      // Obtener el id del div clickeado
+      // Obtener el id del div clickeado 
       const id = this.id;
       if(id){
         if(id == "inicio"){
@@ -108,6 +108,14 @@ cards.forEach(item => {
         localStorage.removeItem(id);
      window.location.href = `inicio.html`;
       });
+
+      const movera = document.querySelectorAll('#movera');
+      movera.forEach(nitem => {
+        nitem.addEventListener('click', (event) => {
+          abrirmover(id)
+          });
+      });
+
 
   });
  

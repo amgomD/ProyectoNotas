@@ -57,11 +57,11 @@ font-size: 20px;
     font-size: 14px;
     line-height: 1.2;
 }
-#compartir,#comentarios,#historial,#opciones{
+#compartir,#nuevo,#comentarios,#historial,#opciones{
     cursor: pointer;
     padding: 8px;
 }
-#compartir:hover,#Menu:hover,#comentarios:hover,#historial:hover,#opciones:hover{
+#nuevo:hover,#compartir:hover,#Menu:hover,#comentarios:hover,#historial:hover,#opciones:hover{
     background-color: #2e2e2e;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.5s ease; 

@@ -59,7 +59,7 @@ function cargarnotas(){
         let clave = localStorage.key(i); // Obtener la clave
         let valor = localStorage.getItem(clave); // Obtener el valor
         const notaObj = JSON.parse(valor);
-        if(notaObj.isNota){
+        if(notaObj.IsNota){
             menucont+= ` <div id="${notaObj.id}" class="items">
             <img style="border-radius:500px;" src="${notaObj.portada}" width="15px"
                 alt="icon" id="icon"> ${notaObj.titulo}

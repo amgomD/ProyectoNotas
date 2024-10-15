@@ -73,7 +73,7 @@
     </div>
 
     <div id="menuop2" class="menuop-hidden">
-        <div class="opitems"><i class="fa-solid fa-arrows-up-down-left-right"></i>Mover a</div>
+        <div id="movera" class="opitems"><i class="fa-solid fa-arrows-up-down-left-right"></i>Mover a</div>
         <div id="papelera" class="opitems"><i class="fa-solid fa-trash"></i>Mover a la papelera</div>
         <hr>
 
@@ -159,13 +159,28 @@
         </div>
       </div>
 
-
+      <div id="modalmover" class="modal-wrapper">
+        <div class="modal">
+          <div class="head">
+            <h3 id="foldericon"> <i class="fa-solid fa-folder"></i>
+              Carpetas
+            </h3>
+            <input type="color" id="colorPicker" style="display: none;" value="#e8e8e8">
+            <i style="cursor: pointer;" onclick="cerrarmover()"   class="fa-solid fa-xmark"></i>
+          </div>
+          <div id="content-carpetas" class="content">
+            
+                  
+          </div>
+        </div>
+      </div>
 
     <script src="js/Menu/sidemenu.js"></script>
     <script src="js/Notas/cardsNotas.js"></script>
     <script src="js/clases/nota.js"></script>
     <script src="js/clases/proyecto.js"></script>
     <script src="js/Proyectos/NuevoProyecto.js"></script>
+    <script src="js/Notas/MoverNota.js"></script>
 
 </body>
 
