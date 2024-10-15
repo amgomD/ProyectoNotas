@@ -14,6 +14,7 @@ let prioridad = document.getElementById('prioridad');
 let fechapropiedades = document.getElementById('fechapropiedades'); // Asumiendo que la fecha se establecerá como texto
 let result = document.getElementById('result'); // Asumiendo que la fecha se establecerá como texto
 let fecha = document.getElementById("fecha");
+let optpapelera = document.getElementById("optpapelera");
 const Proyectoguardado = localStorage.getItem(valorParametro);
 
 if (Proyectoguardado) {
@@ -71,14 +72,12 @@ encabezado.addEventListener('input', function(event) {
   });
  
 
-  const papelera = document.querySelectorAll('#papelera');
-      papelera.forEach(nitem => {
-        nitem.addEventListener('click', (event) => {
+
+    optpapelera.addEventListener('click', (event) => {
     eliminarnotas(proyecto);
     localStorage.removeItem(newProyecto.id);
-   window.location.href = `inicio.html`;    
+    window.location.href = `inicio.html`;    
           });
- });
 
 
 // Escucha el evento 'keypress' en el input
