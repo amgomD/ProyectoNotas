@@ -194,7 +194,7 @@ let nuevoElemento =   `
 
   let plansel = document.getElementById(usuario.getplan())
     if(!plansel){
-    plansel = document.getElementById(1)
+    plansel = document.getElementById('1')
     }
      plansel.classList.add('seleccionado'); 
 
