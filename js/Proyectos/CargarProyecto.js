@@ -78,7 +78,7 @@ encabezado.addEventListener('input', function(event) {
     localStorage.removeItem(newProyecto.id);
    window.location.href = `inicio.html`;    
           });
-
+ });
 
 
 // Escucha el evento 'keypress' en el input
