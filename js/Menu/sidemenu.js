@@ -38,17 +38,11 @@ function cargarnotas(){
         <div id="inicio" class="items">
             <i class="fa-solid fa-house"></i> Inicio
         </div>
-        <div class="items">
+        <div onclick="config()" id="configuracion" class="items">
             <i class="fa-solid fa-gear"></i>Configuraciones
         </div>
 
-        <div class="tituloitem">
-            Favoritos
-        </div>
-        <div class="items">
-            <img src="https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f550.svg" width="15px"
-                alt="icon" id="icon"> Configuraciones
-        </div>
+       
         <div class="tituloitem">
             Privado
         </div>
@@ -98,10 +92,14 @@ items.forEach(item => {
         if(id == "inicio"){
             window.location.href = `inicio.html`;
           }else{
+            if(id == "configuracion"){
+
+            }else{
           // Redirigir a otra página pasando el id como parámetro
           window.location.href = `Nota.html?id=${id}`;
-          }
-      }
+        }
+    }
+}
  
 
     });

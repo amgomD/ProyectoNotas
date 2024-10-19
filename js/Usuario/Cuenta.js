@@ -75,11 +75,22 @@ let nuevoElemento =   `
             <p id="username">${usuario.getNombre()}</p>
              <sub>${usuario.getDescripcion()}</sub>
            </div>
-       
+        
+          <div>
+                     <div class="item'perfil">
+         <div id="guardarsu" class="btn-solid">
+            Cambiar suscripcion
+         </div>
+          <div onclick="salisperfil()" class="btn-outline">
+            Salir
+         </div>
+             </div>
+        </div>
 
         </div>
 <div class="columnas-perfil">
     <div class="info-perfil">
+    <div>
         <div class="item'perfil">
             <sub>Usuario</sub>
             <p id="username">${usuario.getNombre()}</p>
@@ -88,7 +99,9 @@ let nuevoElemento =   `
             <sub>Email</sub>
             <p id="email">${usuario.getEmail()} </p>
         </div>
-        <div class="item'perfil">
+    </div>
+    <div>
+           <div class="item'perfil">
             <sub>Plan</sub>
             <p id="plan"> ${usuario.getDescripcion()} </p>
         </div>
@@ -96,14 +109,8 @@ let nuevoElemento =   `
             <sub>Fecha suscripcion</sub>
             <p id="fechasup"> ${usuario.getfecha()} </p>
         </div>
-        <div class="item'perfil">
-         <div id="guardarsu" class="btn-solid">
-            Cambiar suscripcion
-         </div>
-          <div onclick="salisperfil()" class="btn-outline">
-            Salir
-         </div>
-        </div>
+    </div>
+
     </div>
 <div class="planes">
     <div id="1" class="basico">
@@ -167,7 +174,7 @@ let nuevoElemento =   `
     </div>
 
 
-  `    
+  `   
   document.body.insertAdjacentHTML('beforeend', nuevoElemento);
 
   let modalnew = document.getElementById('modalperfil');
