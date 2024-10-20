@@ -131,7 +131,6 @@ noticorreo.addEventListener('change', function () {
   });
 
 
-
   let resumen = document.getElementById('resumen');
   resumen.checked = configuraciones.resumenes;
   
@@ -151,7 +150,6 @@ noticorreo.addEventListener('change', function () {
       }
     });
   
-
 
     const opciones = document.getElementsByName('theme');
     let seleccion = null;

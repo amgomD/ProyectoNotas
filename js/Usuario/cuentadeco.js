@@ -228,8 +228,6 @@ function salisperfil(){
 }
 
 
-   
-
     function guardarusuariolocal(config){
         let usuariocreado = config;
         localStorage.setItem('user', JSON.stringify(usuariocreado));
