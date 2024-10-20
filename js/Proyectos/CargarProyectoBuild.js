@@ -16,23 +16,30 @@ let result = document.getElementById('result'); // Asumiendo que la fecha se est
 let fecha = document.getElementById("fecha");
 let optpapelera = document.getElementById("optpapelera");
 const Proyectoguardado = localStorage.getItem(valorParametro);
-
+let newProyecto = null;
 if (Proyectoguardado) {
   const proyecto = JSON.parse(Proyectoguardado);
-  let newProyecto = new Proyecto();
-  newProyecto.setId(valorParametro).build();
-    newProyecto.setNombre(proyecto.nombre).build();
-    newProyecto.setPrioridad(proyecto.prioridad).build();
-    newProyecto.setFechaCreacion(proyecto.fechaCreacion).build();
-    newProyecto.setDescripcion(proyecto.descripcion).build();
+
+  const builderCompleto = new ProyectoBuilder();
+  const directorCompleto = new Director(builderCompleto);
+  directorCompleto.construirProyectoCompleto();
+  newProyecto = builderCompleto.build();
+
+
+
+  newProyecto.setId(valorParametro);
+    newProyecto.setNombre(proyecto.nombre);
+    newProyecto.setPrioridad(proyecto.prioridad);
+    newProyecto.setFechaCreacion(proyecto.fechaCreacion);
+    newProyecto.setDescripcion(proyecto.descripcion);
 
 if (proyecto.colorIcon) {
-    newProyecto.setcolorIcon(proyecto.colorIcon).build();   
+    newProyecto.setcolorIcon(proyecto.colorIcon);   
 }else{
-    newProyecto.setcolorIcon('#e8e8e8').build();   
+    newProyecto.setcolorIcon('#e8e8e8');   
 }
-newProyecto.setNota(proyecto.notas).build();
-newProyecto.setEtiqueta(proyecto.etiquetas).build();
+newProyecto.setNota(proyecto.notas);
+newProyecto.setEtiqueta(proyecto.etiquetas);
 
 cargarnotasinicio();
 
@@ -175,7 +182,7 @@ const dia = fechaActual.getDate().toString().padStart(2, '0');
     let nuevaNota = new Nota(id,"",
         "","../img/fondo1.png",`${dia}/${mes}/${año}`,"",true,valorParametro);
         nuevaNota.setFolder(valorParametro);
-        newProyecto.addNota(nuevaNota).build();
+        newProyecto.addNota(nuevaNota);
         guardarProyectoEnLocalStorage(newProyecto); 
         guardarNotaLocal(nuevaNota); 
         window.location.href = `Nota.html?id=${encodeURIComponent(nuevaNota.id)}`;

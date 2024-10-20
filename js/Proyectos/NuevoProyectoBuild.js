@@ -2,30 +2,39 @@
 
 function crearProyecto(){
 
-    let newProyecto = new Proyecto();
+    const builderCompleto = new ProyectoBuilder();
+    const directorCompleto = new Director(builderCompleto);
+    directorCompleto.construirProyectoCompleto();
+    const proyectoCompleto = builderCompleto.build();
+    console.log(proyectoCompleto);
+
     const encabezado = document.getElementById('encabezado').value;
     const prioridad = document.getElementById('prioridad').value;
     const fechapropiedades = document.getElementById('fechapropiedades').innerText; // Asumiendo que la fecha se establecerá como texto
     const descripcion = document.getElementById('descripcion').value;
     const color = document.getElementById('colorPicker').value;
+
+
+
+
     if (encabezado) {
-        newProyecto.setNombre(encabezado).build();
+        proyectoCompleto.setNombre(encabezado);
     }
     if (prioridad) {
-        newProyecto.setPrioridad(prioridad).build();
+        proyectoCompleto.setPrioridad(prioridad);
     }
 
     if (fechapropiedades) {
-        newProyecto.setFechaCreacion(fechapropiedades).build();
+        proyectoCompleto.setFechaCreacion(fechapropiedades);
     }
 
     if (descripcion) {
-        newProyecto.setDescripcion(descripcion).build();
+        proyectoCompleto.setDescripcion(descripcion);
     }
     if(color) {
-        newProyecto.setcolorIcon(color).build();   
+        proyectoCompleto.setcolorIcon(color);   
     }else{
-        newProyecto.setcolorIcon('#e8e8e8').build();   
+        proyectoCompleto.setcolorIcon('#e8e8e8');   
     }
     if (selectedCheckboxes.length > 0) {
 
@@ -42,9 +51,9 @@ function crearProyecto(){
                 notaObj.fecha,
                 notaObj.contenido,
                 true,
-                newProyecto.getId()
+                proyectoCompleto.getId()
               );
-              newProyecto.addNota(nota).build();
+              proyectoCompleto.addNota(nota);
               guardarNotaLocal(nota); 
        
             }
@@ -54,17 +63,17 @@ function crearProyecto(){
 
     if (itemsArray.length > 0) {
         itemsArray.forEach(function(item, index) {
-            newProyecto.addEtiqueta(item).build();
+            proyectoCompleto.addEtiqueta(item);
         });
       
     }
 
-guardarProyectoEnLocalStorage(newProyecto)
+guardarProyectoEnLocalStorage(proyectoCompleto)
  window.location.href = `inicio.html`;
 }
 
-function guardarProyectoEnLocalStorage(Proyecto) {
-    let Proyectocreada = Proyecto.build();
+function guardarProyectoEnLocalStorage(proyectoCompleto) {
+    let Proyectocreada = proyectoCompleto;
     localStorage.setItem(Proyectocreada.id, JSON.stringify(Proyectocreada));
 }
 
