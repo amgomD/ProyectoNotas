@@ -1,20 +1,10 @@
 
 
 function cuenta(){
+    const config1 = Configuracion.getInstance();
+    let configuraciones = config1.getConfig();
 
     let fechapropiedades = document.getElementById('fechapropiedades');
-    const date = new Date();
-    const options = {
-        weekday: 'long', // lunes
-        year: 'numeric', // 2024
-        month: 'long',   // octubre
-        day: 'numeric',  // 14
-        hour: 'numeric', // 09
-        minute: 'numeric', // 29
-        hour12: true // Formato de 12 horas con AM/PM
-    };
-    
-    const formattedDate = date.toLocaleString('es-CO', options);
 
 
     const usuarioJSON = localStorage.getItem('user');
@@ -24,42 +14,33 @@ function cuenta(){
 
 
     if (usuarioData ) {
-          
-        // Obtener el objeto usuario
-        if(usuarioData.usuario){
-            usuario = new Usuario(
-                usuarioData.usuario.nombre, 
-                usuarioData.usuario.email,
-                usuarioData.usuario.fecha,
-                usuarioData.usuario.plan);
-    
-        }else{
-            usuario = new Usuario(
-                usuarioData.nombre, 
-                usuarioData.email,
-                usuarioData.fecha,
-                usuarioData.plan);
-    
-        }
-
-               
-        switch (usuario.getplan()) {
-            case "1" :
-            usuario = new Usuario('Andres Gomez Niño', 'Andres@mail.com',formattedDate,1);
+        let usuarioBasico = new Usuario();
+        
+        usuarioBasico.setConfig(usuarioData.usuario.config);
+          switch (usuarioData.usuario.config.planId) {
+            case 1 :
+                usuario = new UsuarioBasicoDecorator(usuarioBasico);
+            break;
+            case 2:
+                usuario = new UsuarioProDecorator(usuarioBasico);
                 break;
-            case "2":
-                usuario = new UsuarioPro(usuario);
-    
-                break;
-            case "3":
-                usuario = new UsuarioPremium(usuario);
-                break;
-            default:
-                usuario = new Usuario('Andres Gomez Niño', 'Andres@mail.com',formattedDate,1); 
-        }
-
+            case 3:
+                usuario = new UsuarioPremiumDecorator(usuarioBasico);
+            break;
+  
+            }
+     guardarusuariolocal(usuario);
     } else {
-         usuario = new Usuario('Andres Gomez Niño', 'Andres@mail.com',formattedDate,1);
+        const usuarioBasico = new Usuario();
+         usuario = new UsuarioBasicoDecorator(usuarioBasico);
+        guardarusuariolocal(usuario);
+        config1.setConfig(
+            {
+                plan:usuario.getConfig().planDesc,
+                fechapla:usuario.getConfig().planFecha
+            }
+        )
+    
     }
     
 
@@ -72,8 +53,8 @@ let nuevoElemento =   `
            </div>
            <div class="perDer">
    
-            <p id="username">${usuario.getNombre()}</p>
-             <sub>${usuario.getDescripcion()}</sub>
+            <p id="username">Andres Gomez Niño</p>
+             <sub>${usuario.getConfig().planDesc}</sub>
            </div>
         
           <div>
@@ -93,21 +74,21 @@ let nuevoElemento =   `
     <div>
         <div class="item'perfil">
             <sub>Usuario</sub>
-            <p id="username">${usuario.getNombre()}</p>
+            <p id="username">Andres Gomez Niño</p>
         </div>
         <div class="item'perfil">
             <sub>Email</sub>
-            <p id="email">${usuario.getEmail()} </p>
+            <p id="email">andres@gmail.com </p>
         </div>
     </div>
     <div>
            <div class="item'perfil">
             <sub>Plan</sub>
-            <p id="plan"> ${usuario.getDescripcion()} </p>
+            <p id="plan"> ${usuario.getConfig().planDesc} </p>
         </div>
         <div class="item'perfil">
             <sub>Fecha suscripcion</sub>
-            <p id="fechasup"> ${usuario.getfecha()} </p>
+            <p id="fechasup">${usuario.getConfig().planFecha} </p>
         </div>
     </div>
 
@@ -192,14 +173,16 @@ let nuevoElemento =   `
   
           // Obtén el id del plan clickeado
           const planId = plan.getAttribute('id');
-          usuario.setPlan(planId);
-          // Aquí puedes hacer lo que necesites con el id
+          usuario.setConfig({
+            planId: Number(planId) ,
+          });
+       
       });
   });
 
 
 
-  let plansel = document.getElementById(usuario.getplan())
+  let plansel = document.getElementById(usuario.getConfig().planId)
     if(!plansel){
     plansel = document.getElementById('1')
     }
@@ -207,9 +190,33 @@ let nuevoElemento =   `
 
 
 
-
 document.getElementById('guardarsu').addEventListener('click',function(event){
-    guardarsus(usuario);
+    let usuarioBasico = new Usuario();
+    switch (usuario.getConfig().planId) {
+
+        case 1 :
+            usuario = new UsuarioBasicoDecorator(usuarioBasico);
+        break;
+        case 2:
+            usuario = new UsuarioProDecorator(usuarioBasico);
+            break;
+        case 3:
+            usuario = new UsuarioPremiumDecorator(usuarioBasico);
+        break;
+
+        }
+
+
+       config1.setConfig(
+        {
+            plan:usuario.getConfig().planDesc,
+            fechapla:usuario.getConfig().planFecha
+        }
+    )
+    guardarusuariolocal(usuario);
+  
+
+    salisperfil();
 })
 
 }
@@ -220,14 +227,10 @@ function salisperfil(){
     modalnew.remove();
 }
 
-function guardarsus( usuario){
-    console.log(usuario)
-        guardarusuariolocal(usuario);
-        salisperfil();
-}
+
    
 
-    function guardarusuariolocal(usuario){
-        let usuariocreado = usuario;
+    function guardarusuariolocal(config){
+        let usuariocreado = config;
         localStorage.setItem('user', JSON.stringify(usuariocreado));
     }

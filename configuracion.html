@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Global.css" />
+    <link rel="stylesheet" href="css/inicio.css" />
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/configuracion.css">
+   
+</head>
+<body>
+    <div id="modalconfig" class="modal-wrapper">
+    <div class="modalperfil">
+<div class="modal-config">
+    <h1>Configuracion</h1>
+    <div class="config-ite">
+        <div class="lado-izq">
+            <sub>Plan</sub>
+            <p id="plan">Plan basico</p>
+    
+        </div>
+        <div class="lado-der">
+            <sub>Fecha</sub>
+            <p id="fechaplan">lunes</p>
+    
+        </div>
+    </div>
+    <div class="config-ite">
+        <div class="lado-izq">
+            <sub>Notificar</sub>
+            <p >Notificar cambios por correo al final del dia</p>
+    
+        </div>
+        <div class="lado-der">
+            <div class="switch">
+                <input type="checkbox" id="noticorreo" />
+                <label for="noticorreo"></label>
+              </div>
+              
+        </div>
+    </div>
+    <div class="config-ite">
+        <div class="lado-izq">
+            <sub>Resumen</sub>
+            <p id="Resumen">Resumen de la actividad en los ultimos 8 dias</p>
+    
+        </div>
+        <div class="lado-der">
+            <div class="switch">
+                <input type="checkbox" id="resumen" />
+                <label for="resumen"></label>
+              </div>
+    
+        </div>
+    </div>
+    <div class="config-ite">
+        <div class="lado-izq">
+            <sub>Tema</sub>
+            <p id="plan">Cambia la apariencia del sistema</p>
+            <div class="theme-selector">
+                <div class="optiong">
+                  <input type="radio" id="system" name="theme" checked />
+                  <label for="system">
+                    <div class="img-placeholder system"></div>
+                    <p>Sistema</p>
+                  </label>
+                </div>
+                <div class="optiong">
+                  <input type="radio" id="light" name="theme" />
+                  <label for="light">
+                    <div class="img-placeholder light"></div>
+                    <p>Claro</p>
+                  </label>
+                </div>
+                <div class="optiong">
+                  <input type="radio" id="dark" name="theme" />
+                  <label for="dark">
+                    <div class="img-placeholder dark"></div>
+                    <p>Oscuro</p>
+                  </label>
+                </div>
+              </div>
+              
+        </div>
+  
+    </div>
+</div>
+</div></div>
+
+</body>
+</html>

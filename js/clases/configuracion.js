@@ -3,14 +3,27 @@ class Configuracion {
         if (Configuracion.instance) {
             throw new Error("No se puede instanciar directamente. Use Configuracion.getInstance().");
         }
+        const storedConfig = localStorage.getItem('config');
 
 
         this.config = {
             plan: 'basic',
-            notificarCorreo: true,
+            fechapla:'Hoy',
+            notificarCorreo: false,
             resumenes: false,
-            tema: 'light',
+            tema: 'sistema',
         };
+        if (storedConfig) {
+            try {
+              this.config = {
+                ...this.config,  // Mantenemos los valores por defecto
+                ...JSON.parse(storedConfig) // Sobrescribimos con los valores de localStorage
+              };
+            } catch (error) {
+              console.error('Error al parsear los datos de localStorage:', error);
+            }
+          }
+
 
         Configuracion.instance = this;
     }
@@ -28,8 +41,14 @@ class Configuracion {
 
     setConfig(newConfig) {
         this.config = { ...this.config, ...newConfig };
+        guardarConfLocal(this.config)
+    
     }
 }
 
 
+
+function guardarConfLocal(newConfig) {
+    localStorage.setItem('config', JSON.stringify(newConfig));
+}
 

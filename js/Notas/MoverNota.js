@@ -26,7 +26,7 @@ function cargarCarpetas(nid){
         let clave = localStorage.key(i); // Obtener la clave
         let valor = localStorage.getItem(clave); // Obtener el valor
         const notaObj = JSON.parse(valor);
-        console.log(notaObj)
+  
         if (!notaObj.IsNota && notaObj.id) {
         menucont+= `  
         <div id="${notaObj.id}" class="carpeta">
@@ -50,11 +50,11 @@ function cargarCarpetas(nid){
 const cards = document.querySelectorAll('.carpeta');
 
 cards.forEach(item => {
-console.log(nid)
+
     item.addEventListener('click', function() {
       // Obtener el id del div clickeado 
       const id = this.id;
-      console.log(id)
+
       if(id){
         actualizarIdFolderEnLocalStorage(nid,id)
  
@@ -77,7 +77,7 @@ function actualizarIdFolderEnLocalStorage(id, nuevoIdFolder) {
         nota.IdFolder = nuevoIdFolder;
      localStorage.setItem(id, JSON.stringify(nota));
 
-        console.log('IdFolder actualizado:', nota);
+    
     } else {
         console.log('El objeto con ese ID no fue encontrado.');
     }

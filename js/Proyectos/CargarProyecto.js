@@ -138,7 +138,8 @@ function cargarnotasinicio(){
         let valor = localStorage.getItem(clave); // Obtener el valor
        
         const notaObj = JSON.parse(valor);
-        console.log(notaObj)
+      
+    
         if (notaObj.IsNota && notaObj.IdFolder == valorParametro) {
         menucont+= `  <div id="${notaObj.id}" class="card">
                     <div style="background-image: url(${notaObj.portada});" class="portada-card">
@@ -235,7 +236,7 @@ cards.forEach(item => {
 
   document.getElementById('opciones').addEventListener('click', function(event) {
     const menu = document.getElementById('menuop');
-    console.log('jols')
+
     // Obtener la posición del div 'opciones'
     const rect = this.getBoundingClientRect();
     
@@ -256,7 +257,7 @@ cards.forEach(item => {
 
 
 function eliminarnotas(proyecto){
-    console.log( proyecto.notas);
+  
     proyecto.notas.forEach(function(item, index) {
         localStorage.removeItem(item.id);  
     });

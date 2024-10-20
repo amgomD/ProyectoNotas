@@ -96,7 +96,7 @@ cards.forEach(item => {
     item.addEventListener('contextmenu', function(event) {
       const id = this.id;
       event.preventDefault();  // Previene el menú contextual por defecto del navegador
-      console.log('Hola'+id);
+  
       const menu = document.getElementById('menuop2');
       menu.style.display = 'block';
       menu.style.left = `${event.pageX}px`;
@@ -104,7 +104,7 @@ cards.forEach(item => {
       const papelera = document.getElementById('papelera');
       papelera.addEventListener('click', (event) => {
         const id = this.id;
-        console.log(id);
+   
         localStorage.removeItem(id);
      window.location.href = `inicio.html`;
       });
@@ -176,7 +176,7 @@ cards.forEach(item => {
         const papelera = document.getElementById('papelera');
         papelera.addEventListener('click', (event) => {
           const id = this.id;
-          console.log(id);
+     
           localStorage.removeItem(id);
        window.location.href = `inicio.html`;
         });

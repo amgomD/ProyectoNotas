@@ -85,26 +85,8 @@ textarea.srcdoc = `
     </html>
 `;
 
-document.getElementById('opciones').addEventListener('click', function(event) {
-    const menu = document.getElementById('menuop');
-    console.log('jols')
-    // Obtener la posición del div 'opciones'
-    const rect = this.getBoundingClientRect();
-    
 
-    // Mostrar u ocultar el menú
-    menu.classList.add('mostrar');
-    menu.classList.remove('ocultar');
 
-});
-
-  document.addEventListener('click', (event) => {
-    const menu = document.getElementById('menuop');
-    const opciones = document.getElementById('opciones');
-    if (!menu.contains(event.target) && !opciones.contains(event.target)) {
-        menu.classList.add('ocultar');
-    }
-  });
 
 
 
