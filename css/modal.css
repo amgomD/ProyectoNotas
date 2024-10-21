@@ -93,7 +93,7 @@ gap: 10px;
   }
   
   .modal-wrapper.open .modal{
-    margin-top:-200px;
+    margin-top:-300px;
     opacity:1;
   }
   
