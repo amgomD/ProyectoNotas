@@ -5,7 +5,6 @@ class Editor {
     }
   
     executeCommand(command, arg) {
-        
         editortext.document.execCommand(command, false, arg);
     }
   }
