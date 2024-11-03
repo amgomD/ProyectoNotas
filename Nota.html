@@ -92,13 +92,66 @@
       </iframe>
     </div>
     <div id="galeria"></div>
+
+
+
+
 <div id="editor" class="editor">
+
   <button id="heading"><i class="fa-solid fa-text-height"></i></i></button>
 
+  <select class="fontSizeSelect">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+  </select>
 
+  <div id="menuheading">
 
+    <div id="pop">
+      <button class="formatBlockH1"><h1>Encabezado 1</h1></button>
+      <button class="formatBlockH2"><h2>Encabezado 2</h2></button>
+      <button class="formatBlockH3"><h3>Encabezado 3</h3></button>
+      <button class="formatBlockH4"><h4>Encabezado 4</h4></button>
+      <button class="formatBlockH5"><h5>Encabezado 5</h5></button>
+    </div>
+</div>
 
+<button class="bold"><i class="fa-solid fa-bold"></i></button>
+<button class="underline"><i class="fa-solid fa-underline"></i></button>
+<button class="italic"><i class="fa-solid fa-italic"></i></button>
+<button class="createLink"><i class="fa-solid fa-link"></i></button>
+<button class="copy"><i class="fa-solid fa-clipboard"></i></button>
+<button class="cut"><i class="fa-solid fa-scissors"></i></button>
+<input class="input2" type="color"/>
+<button class="justifyLeft"><i class="fa-solid fa-align-left"></i></button>
+<button class="justifyFull"><i class="fa-solid fa-align-justify"></i></button>
+<button class="justifyCenter"><i class="fa-solid fa-align-center"></i></button>
+<button class="justifyRight"><i class="fa-solid fa-align-right"></i></button>
+<button class="insertUnorderedList"><i class="fa-solid fa-list"></i></button>
+<button class="insertOrderedList"><i class="fa-solid fa-list-ol"></i></button>
 
+<button class="image"><i class="fa-solid fa-image"></i></button>
+
+    <!-- 
+
+  <div id="menuheading">
+     <div id="pop">
+      <button onclick="execCommandWithArg('formatBlock', 'H1')"><h1 >Encabezado 1</h1></button>
+      <button onclick="execCommandWithArg('formatBlock', 'H2')"><h2>Encabezado 2</h2></button>
+      <button onclick="execCommandWithArg('formatBlock', 'H3')"><h3>Encabezado 3</h3></button>
+      <button onclick="execCommandWithArg('formatBlock', 'H4')"><h4>Encabezado 4</h3></button>
+      <button onclick="execCommandWithArg('formatBlock', 'H5')"><h5>Encabezado 5</h3></button>
+    </div> </div>
+-->
+
+<!-- 
   <select onchange="execCommandWithArg('fontSize',this.value)">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -110,20 +163,10 @@
     <option value="8">8</option>
     <option value="9">9</option>
   </select>
+   -->
   
-  
-  <!-- <select onchange="execCommandWithArg('fontName',this.value)">
-    <option value="Arial">Arial</option>
-    <option value="Comic Sans MS">Comic Sans MS</option>
-    <option value="Courier">Courier</option>
-    <option value="Georgia">Georgia</option>
-    <option value="Tahoma">Tahoma</option>
-    <option value="Times New Roman">Times New Roman</option>
-    <option value="Verdana">Verdana</option>
 
-  </select> -->
-
-  <button onclick="execCmd('bold')"><i class="fa-solid fa-bold"></i>
+  <!-- <button onclick="execCmd('bold')"><i class="fa-solid fa-bold"></i>
   </button>
     <button onclick="execCommandWithArg('createlink',prompt('Enter a url','http://'));"><i class="fa-solid fa-link"></i>
   </button>
@@ -131,22 +174,12 @@
   </button>
   <button onclick="execCmd('cut');"><i class="fa-solid fa-scissors"></i>
   </button>
+ -->
 
 
-  <div id="menuheading">
-    <div id="pop">
-      <button onclick="execCommandWithArg('formatBlock', 'H1')"><h1 >Encabezado 1</h1></button>
-      <button onclick="execCommandWithArg('formatBlock', 'H2')"><h2>Encabezado 2</h2></button>
-      <button onclick="execCommandWithArg('formatBlock', 'H3')"><h3>Encabezado 3</h3></button>
-      <button onclick="execCommandWithArg('formatBlock', 'H4')"><h4>Encabezado 4</h3></button>
-      <button onclick="execCommandWithArg('formatBlock', 'H5')"><h5>Encabezado 5</h3></button>
-    </div>
-
-</div>
-
-  <input onchange="execCommandWithArg('foreColor',this.value)"  class="input2"  type="color"/>
-  
-
+  <!-- <input onchange="execCommandWithArg('foreColor',this.value)"  class="input2"  type="color"/>
+   -->
+<!-- 
 <button onclick="execCmd('underline')"><i class="fa-solid fa-underline"></i></i></button>
 <button onclick="execCmd('italic')"><i class="fa-solid fa-italic"></i></button>
 <button onclick="execCmd('justifyLeft')"><i class="fa-solid fa-align-left"></i></button>
@@ -156,7 +189,8 @@
 <button onclick="execCmd('insertUnorderedList')"><i class="fa-solid fa-list"></i></button>
 <button onclick="execCmd('insertOrderedList')"><i class="fa-solid fa-list-ol"></i></button>
 <button onclick="execCmd('bold')"><i class="fa-solid fa-list-check"></i></button>
-<button onclick="execCmd('bold')"><i class="fa-solid fa-image"></i></button>
+<button onclick="execCmd('bold')"><i class="fa-solid fa-image"></i></button> -->
+
 
 </div>
 
@@ -171,14 +205,15 @@
  </div>
 
  <script src="js/clases/nota.js"></script>
+ <script src="js/clases/Editor.js"></script>
  <script src="js/Notas/EditorNota.js"></script>
  <script src="js/app.js"></script>
  <script src="js/clases/configuracion.js"></script>
- <script src="js/EditorText/editor.js"></script>
+ <script src="js/EditorText/EditorCliente.js"></script>
  <script src="js/Menu/sidemenu.js"></script>
-        <script src="js/clases/UsuarioDeco.js"></script>
-    <script src="js/Usuario/cuentadeco.js"></script>
-    <script src="js/Configuracion/EditConfiguracion.js"></script>
+<script src="js/clases/UsuarioDeco.js"></script>
+<script src="js/Usuario/cuentadeco.js"></script>
+<script src="js/Configuracion/EditConfiguracion.js"></script>
 
 </body>
   
