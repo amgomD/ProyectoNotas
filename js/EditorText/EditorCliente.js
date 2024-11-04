@@ -1,4 +1,8 @@
 
+
+configurarComandos();
+
+function configurarComandos(){
 // Cliente
 const editor = new Editor(document.getElementById('editor'));
 
@@ -57,4 +61,5 @@ if (createLinkButton) {
       createLinkCommand.execute();
     }
   });
+}
 }
