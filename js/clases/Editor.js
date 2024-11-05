@@ -1,38 +1,18 @@
-class Editor {
-  constructor(editorElement) {
-    this.editorElement = editorElement;
+
+class ButtonInvoker {
+  constructor(buttonElement, command, history) {
+    this.buttonElement = buttonElement;
+    this.command = command;
+    this.history = history;
+    this.buttonElement.addEventListener("click", () => this.executeCommand());
   }
 
-  executeCommand(command, arg) {
-    this.editorElement.document.execCommand(command, false, arg);
-  }
-
-  insertImage(src) {
-    const img = document.createElement("img");
-    img.src = src;
-    this.editorElement.document.execCommand("insertHTML", false, img.outerHTML);
-  }
-}
-
-
-// prototype------------------------
-
-class CommandPrototype {
-  constructor(proto) {
-    this.proto = proto;
-    return this.clone();
-  }
-
-  clone() {
-    let command = new Command(this.proto.receiver);
-    command.command = this.proto.command;
-    command.arg = this.proto.arg;
-    command.src = this.proto.src;
-    command.execute = this.proto.execute.bind(command);
-    return command;
+  executeCommand() {
+    this.command.execute();
+    this.history.addCommand(new CommandPrototype(this.command));
   }
 }
-//--------------------------------------
+
 
 
 
@@ -72,19 +52,49 @@ class CommandImg extends Command {
 
 }
 
-class ButtonInvoker {
-  constructor(buttonElement, command, history) {
-    this.buttonElement = buttonElement;
-    this.command = command;
-    this.history = history;
-    this.buttonElement.addEventListener("click", () => this.executeCommand());
+
+class Editor {
+  constructor(editorElement) {
+    this.editorElement = editorElement;
   }
 
-  executeCommand() {
-    this.command.execute();
-    this.history.addCommand(new CommandPrototype(this.command));
+  executeCommand(command, arg) {
+    this.editorElement.document.execCommand(command, false, arg);
+  }
+
+  insertImage(src) {
+    const img = document.createElement("img");
+    img.src = src;
+    this.editorElement.document.execCommand("insertHTML", false, img.outerHTML);
   }
 }
+
+
+
+
+// prototype------------------------
+
+class CommandPrototype {
+  constructor(proto) {
+    this.proto = proto;
+    return this.clone();
+  }
+
+  clone() {
+    let command = new Command(this.proto.receiver);
+    command.command = this.proto.command;
+    command.arg = this.proto.arg;
+    command.src = this.proto.src;
+    command.execute = this.proto.execute.bind(command);
+    return command;
+  }
+}
+//--------------------------------------
+
+
+
+
+
 
 //=-------------------- historico --------------
 
