@@ -1,12 +1,12 @@
  
             .sidebar {
-                width: 300px;
+                width: 500px;
                 background-color: #1a1a1a;
                 color: #fff;
                 height: 100vh;
                  margin-top: 50px;
                 position: fixed;
-           
+            display: flex;
                 top: 0;
                 right: -590px;
                 overflow-y: auto;
@@ -15,6 +15,10 @@
                 box-shadow: 10px 10px 5px 0px rgba(20, 19, 19, 0.884);
   
             }
+
+
+
+
     
             .sidebar-header {
                 margin-bottom: 20px;
@@ -101,7 +105,11 @@
                 background-color: #92400e;
                 color: #fff;
             }
-    
+        
+            .notastate {
+                background-color: #0e920e;
+                color: #fff;
+            }
             .status-change {
                 display: flex;
                 align-items: center;

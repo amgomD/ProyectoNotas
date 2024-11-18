@@ -26,6 +26,7 @@ const commands = [
     const buttonElement = document.querySelector(selector);
     if (buttonElement) {
       const commandInstance = new CommandArgs(editor, command, arg);
+      console.log(buttonElement);
       new ButtonInvoker(buttonElement, commandInstance,history);
     }
   });
@@ -34,9 +35,8 @@ const commands = [
   const colorInput = document.querySelector('input.input2');
   if (colorInput) {
     colorInput.addEventListener('change', () => {
-      const colorCommand = new CommandArgs(editor, 'foreColor', colorInput.value);
-      colorCommand.execute();
-      history.addCommand(new CommandPrototype(colorCommand));
+     const colorCommand = new CommandArgs(editor, 'foreColor', colorInput.value);
+     new ButtonInvokerArgs(colorInput, colorCommand,history);
     });
   }
   
@@ -45,8 +45,7 @@ const commands = [
   if (fontSizeSelect) {
     fontSizeSelect.addEventListener('change', () => {
       const fontSizeCommand = new CommandArgs(editor, 'fontSize', fontSizeSelect.value);
-      fontSizeCommand.execute();
-      history.addCommand(new CommandPrototype(fontSizeCommand));
+      new ButtonInvokerArgs(fontSizeSelect, fontSizeCommand,history);
 
     });
   }
@@ -58,8 +57,7 @@ const commands = [
       const url = prompt('Ingresa una URL', '');
       if (url) {
         const createLinkCommand = new CommandArgs(editor, 'createLink', url);
-        createLinkCommand.execute();
-        history.addCommand(new CommandPrototype(createLinkCommand));
+        new ButtonInvokerArgs(createLinkButton, createLinkCommand,history);
       }
     });
   }
@@ -71,8 +69,7 @@ const commands = [
       const src = prompt('Ingresa la url de la imgaen', '');
       if (src) {
         const insertImageCommand = new CommandImg(editor, src);
-        insertImageCommand.execute();
-        history.addCommand(new CommandPrototype(insertImageCommand));
+        new ButtonInvokerArgs(insertImageButton, insertImageCommand,history);
       }
     });
   }
@@ -89,9 +86,46 @@ let menuhisto = document.getElementById('sidemenuhisto');
       menuhisto.style.right = "0"; // Desliza el menú hacia la vista
 
 
+      let conten = `             
+      <div class= " contenedor historico" >  <h2 class="notifications-title">Estados de la nota</h2>
+       `;
 
-       let conten = `            
-       <h2 class="notifications-title">Cambios realizados</h2>
+
+
+        const notasAnteriores = history.getNotaHistory();
+        notasAnteriores.forEach(notita => {
+         const { nota: comentario,id,titulo,fecha } = notita;
+ 
+         conten += `
+      <div  class="caja-cambio" data-idnota="${id}" > 
+         <div class="notification">
+            <div class="notification-header">
+                <div class="user-info">
+                    <img src="img/perfil.webp" width="30px" alt="">
+                    <span>${titulo}</span>
+                </div>
+                <span id="fechaedit" class="notification-time">${fecha}  - ${directorio.textContent}</span>
+            </div>
+         
+            <div class="status-change">
+              <span id="idnota" class="status-badge notastate">${id}</span>
+            </div>
+        </div>
+        </div> 
+         
+      
+
+        `;
+        });
+
+           conten += ` </div>`
+
+
+           
+  conten += ` 
+
+             
+         <div class= " contenedor historico" >  <h2 class="notifications-title">Comandos aplicados</h2>
           `;
    
 
@@ -99,14 +133,19 @@ let menuhisto = document.getElementById('sidemenuhisto');
            const commands = history.getHistory();
            commands.forEach(command => {
             const { command: commandName, arg } = command;
-    
+            let argu = arg;
+               if(argu == null){
+                argu = "";
+               }
             conten += `
-               <div class="caja-cambio">
+         
+            
+                        <div class="caja-cambio">
             <div class="notification">
                <div class="notification-header">
                    <div class="user-info">
                        <img src="img/perfil.webp" width="30px" alt="">
-                       <span>Editaste</span>
+                       <span>Comando: </span>
                    </div>
                    <span id="fechaedit" class="notification-time">Hace un momento  - ${directorio.textContent}</span>
                </div>
@@ -114,14 +153,68 @@ let menuhisto = document.getElementById('sidemenuhisto');
                <div class="status-change">
                  <span id="commando" class="status-badge created">${commandName}</span>
                  <span class="status-arrow">→</span>
-                 <span id="arg" class="status-badge pending">${arg}</span>
+                 <span id="arg" class="status-badge pending">${argu}</span>
                </div>
            </div>
            </div> 
+            
+         
+   
            `;
            });
+
+              conten += ` </div>`
            menuhisto.innerHTML = conten;
+
+         
+
+// Agregar un manejador de eventos para detectar clics en las notas
+menuhisto.addEventListener('click', (event) => {
+  let edicaja = document.getElementById("editortext");
+  // Buscar el elemento más cercano con la clase `caja-cambio`
+  const cajaCambio = event.target.closest('.caja-cambio');
+  if (cajaCambio) {
+    const idnota = cajaCambio.getAttribute('data-idnota');
+    const notaEncontrada = notasAnteriores.find(nota => nota.id === idnota);
+    if (notaEncontrada) {
+      console.log(`Nota encontrada:`, notaEncontrada.contenido);
+      const iframeDocument = edicaja.contentDocument;
+      const contentDiv = iframeDocument.getElementById('bodyy');
+      contentDiv.innerHTML=  notaEncontrada.contenido;
+
+      
+      nota.setContenido(contentDiv.innerHTML);
+      guardarNotaLocal(nota);
+
+      
+    } else {
+      alert('No se encontro version');
+    }
   }
+
+  
+});
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Función para ocultar el menú lateral
   function ocultarMenuhisto() {

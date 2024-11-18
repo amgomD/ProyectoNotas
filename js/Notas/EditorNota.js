@@ -19,7 +19,7 @@ if (notaGuardada) {
   const notaObj = JSON.parse(notaGuardada);
 
   // 4. Crear una instancia de la clase Nota usando el objeto
-  const nota = new Nota(
+  window.nota = new Nota(
     notaObj.id,
     notaObj.titulo,
     notaObj.comentario,
@@ -257,3 +257,5 @@ function traerDirectorio(id,titulo){
 }
 
 }
+
+

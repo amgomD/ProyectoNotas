@@ -8,10 +8,26 @@ class ButtonInvoker {
   }
 
   executeCommand() {
+    this.history.addCommand(this.command, new NotaPrototype(nota));
     this.command.execute();
-    this.history.addCommand(new CommandPrototype(this.command));
   }
 }
+
+
+class ButtonInvokerArgs {
+  constructor(buttonElement, command, history) {
+    this.buttonElement = buttonElement;
+    this.command = command;
+    this.history = history;
+     this.executeCommand();
+  }
+
+  executeCommand() {
+    this.history.addCommand(this.command, new NotaPrototype(nota));
+    this.command.execute();
+  }
+}
+
 
 
 
@@ -59,6 +75,8 @@ class Editor {
   }
 
   executeCommand(command, arg) {
+
+
     this.editorElement.document.execCommand(command, false, arg);
   }
 
@@ -72,43 +90,25 @@ class Editor {
 
 
 
-// prototype------------------------
-
-class CommandPrototype {
-  constructor(proto) {
-    this.proto = proto;
-    return this.clone();
-  }
-
-  clone() {
-    let command = new Command(this.proto.receiver);
-    command.command = this.proto.command;
-    command.arg = this.proto.arg;
-    command.src = this.proto.src;
-    command.execute = this.proto.execute.bind(command);
-    return command;
-  }
-}
-//--------------------------------------
-
-
-
-
-
-
 //=-------------------- historico --------------
 
 class CommandHistory {
   constructor() {
     this.history = [];
+    this.estadoAnt =[];
   }
 
-  addCommand(command) {
-    this.history.push(command);
-
+  addCommand(command,antnota) {
+    this.history.unshift(command);
+    this.estadoAnt.unshift(antnota)
   }
+
   getHistory() {
     return this.history;
+  }
+  getNotaHistory(){
+    return this.estadoAnt;
+
   }
   /*
 
